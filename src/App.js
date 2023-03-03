@@ -6,8 +6,6 @@ import AllRoutes from "./AllRoutes";
 import Navbar from "./components/Navbar";
 
 const App = () => {
-  // npx electron-packager . --platform=win32 --arch=x64 --out=dist --overwrite
-
   return (
     <BrowserRouter>
       <Navbar />
