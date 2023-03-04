@@ -1,0 +1,39 @@
+.bill-template-screen {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+}
+
+.txt-align-center {
+  text-align: center;
+}
+
+.bill-page {
+  width: 793.71px;
+  height: 1122.52px;
+  background-color: #fff;
+  margin: 1rem;
+}
+
+.bill-title-container {
+  font-family: "PoppinsBold";
+}
+
+.bill-title {
+  margin-top: 2rem;
+  color: #2f9e44;
+}
+
+.invoice-title {
+  color: #888;
+}
+
+.bill-details-container {
+}
+
+.bill-logo-container {
+}
+
+.bill-company-logo {
+  width: 140px;
+}
