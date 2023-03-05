@@ -1,0 +1,30 @@
+.home-options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 100%;
+  font-size: 18px;
+}
+
+.home-options-icon {
+  width: 56px;
+}
+
+.home-options {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  transition: all 0.5s ease-out;
+}
+
+.home-options:hover {
+  color: #fff;
+  background-color: #51cf66;
+  cursor: pointer;
+}

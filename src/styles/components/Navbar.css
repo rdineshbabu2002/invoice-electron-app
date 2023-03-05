@@ -1,0 +1,26 @@
+.navbar-container {
+  padding: 1rem 3rem;
+  display: flex;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.navbar-back-logo {
+  width: 24px;
+  transition: all 0.5s;
+}
+
+.navbar-back-logo:hover {
+  color: #2f9e44;
+}
+
+.navbar-title-container {
+  flex: 1;
+  text-align: center;
+}
+
+.navbar-title {
+  flex: 1;
+  text-align: center;
+  color: #2f9e44;
+}

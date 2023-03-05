@@ -5,10 +5,12 @@ import Home from "./screens/Home";
 
 const AllRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/bill" element={<BillTemplate />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/bill" element={<BillTemplate />} />
+      </Routes>
+    </>
   );
 };
 
