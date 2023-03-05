@@ -15,6 +15,9 @@ const BillTemplate = () => {
           <span className="invoice-title font-family-light">Invoice No : </span>
           168
         </p>
+        <p className="bill-date">
+          <span className="bill-date-name">Date :</span> 05-03-2023
+        </p>
         <div className="bill-details-container">
           <div className="bill-logo-container">
             <img
@@ -67,11 +70,13 @@ const BillTemplate = () => {
                 <td className="bill-table-body font-family-light">
                   BPT 26 KG BOILED RICE
                 </td>
-                <td className="bill-table-body font-family-light">-</td>
+                <td className="bill-table-body font-family-light">10063010</td>
                 <td className="bill-table-body font-family-light">200</td>
                 <td className="bill-table-body font-family-light">5200</td>
                 <td className="bill-table-body font-family-light">1206.00</td>
-                <td className="bill-table-body font-family-light">241200.00</td>
+                <td className="bill-table-body font-family-light ">
+                  241200.00
+                </td>
               </tr>
 
               <tr className="bill-table-final-row">
@@ -88,7 +93,7 @@ const BillTemplate = () => {
                 <td className="bill-table-total bill-table-header-title rate">
                   1206.00
                 </td>
-                <td className="bill-table-total bill-table-header-title amount">
+                <td className="bill-table-total bill-table-header-title amount bill-total-amt">
                   241200.00
                 </td>
               </tr>

@@ -45,6 +45,14 @@
   gap: 2rem;
 }
 
+.bill-date {
+  float: right;
+  font-size: 14px;
+}
+.bill-date-name {
+  color: #888;
+}
+
 .bill-logo-container {
   margin-left: 3rem;
 }
@@ -231,4 +239,8 @@
   position: absolute;
   bottom: 0;
   right: 20px;
+}
+
+.bill-total-amt {
+  font-size: 20px;
 }
