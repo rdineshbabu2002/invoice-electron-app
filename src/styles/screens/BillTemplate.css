@@ -46,6 +46,7 @@
 }
 
 .bill-date {
+  margin-right: 3rem;
   float: right;
   font-size: 14px;
 }
