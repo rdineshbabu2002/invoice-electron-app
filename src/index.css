@@ -4,9 +4,19 @@
 }
 
 @font-face {
+  font-family: "PoppinsMedium";
+  src: url("./font/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "PoppinsBold";
   font-weight: 700;
   src: url("./font/Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PoppinsLight";
+  src: url("./font/Poppins-Light.ttf") format("truetype");
 }
 
 * {
