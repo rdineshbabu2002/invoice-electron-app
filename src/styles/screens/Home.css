@@ -7,6 +7,10 @@
   width: 100%;
   font-size: 18px;
 }
+.home-link {
+  text-decoration: none;
+  color: #333;
+}
 
 .home-options-icon {
   width: 56px;
