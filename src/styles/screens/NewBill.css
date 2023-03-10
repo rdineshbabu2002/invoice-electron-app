@@ -1,0 +1,66 @@
+.billforminput {
+  width: 20rem;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30rem;
+  gap: 4rem;
+  margin-top: 1rem;
+}
+
+.input-select {
+  width: 20rem;
+  margin-bottom: 0;
+}
+
+.form-container {
+  margin-top: 3rem;
+  margin-left: 10rem;
+  width: 30rem;
+}
+
+.input-check-box {
+  width: 1rem;
+  height: 1rem;
+}
+
+.input-table-container {
+  margin-top: 4rem;
+}
+
+.form-table-inputs {
+  width: 8rem;
+  height: 2.3rem;
+  padding: 0.7rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-table-selects {
+  width: 14rem;
+}
+
+.tr {
+  border-bottom: 10px solid #333;
+}
+
+.td {
+  padding: 1rem;
+}
+
+.form-add-row-button {
+  background-color: #51cf66;
+  display: inline;
+  padding: 0.4rem 0.8rem;
+  color: #fff;
+  border-radius: 100px;
+  cursor: pointer;
+}
