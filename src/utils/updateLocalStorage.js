@@ -23,4 +23,16 @@ export default function updateLocalStorage() {
   if (!localStorage.getItem("goods")) {
     localStorage.setItem("goods", JSON.stringify(values));
   }
+
+  let customerValues = [
+    {
+      name: "PCM TRADERS",
+      address: "517/6, Petthampalayam Road, Perundurai.",
+      gstin: "33ABMFS6116L1ZV",
+    },
+  ];
+
+  if (!localStorage.getItem("customers")) {
+    localStorage.setItem("customers", JSON.stringify(customerValues));
+  }
 }

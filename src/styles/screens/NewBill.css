@@ -1,3 +1,7 @@
+.section-new-bill {
+  margin: 0 0 1rem 0;
+}
+
 .billforminput {
   width: 20rem;
   height: 40px;
@@ -62,5 +66,19 @@
   padding: 0.4rem 0.8rem;
   color: #fff;
   border-radius: 100px;
+  cursor: pointer;
+}
+
+.btn-container {
+  margin-left: 25rem;
+}
+.submit-btn {
+  font-family: "PoppinsMedium";
+  background-color: #51cf66;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 3px;
   cursor: pointer;
 }

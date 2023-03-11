@@ -1,66 +1,79 @@
-var a = [
-  "",
-  "one ",
-  "two ",
-  "three ",
-  "four ",
-  "five ",
-  "six ",
-  "seven ",
-  "eight ",
-  "nine ",
-  "ten ",
-  "eleven ",
-  "twelve ",
-  "thirteen ",
-  "fourteen ",
-  "fifteen ",
-  "sixteen ",
-  "seventeen ",
-  "eighteen ",
-  "nineteen ",
-];
-var b = [
-  "",
-  "",
-  "twenty",
-  "thirty",
-  "forty",
-  "fifty",
-  "sixty",
-  "seventy",
-  "eighty",
-  "ninety",
-];
+export default function inWords(amount) {
+  const words = [
+    "",
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Eleven",
+    "Twelve",
+    "Thirteen",
+    "Fourteen",
+    "Fifteen",
+    "Sixteen",
+    "Seventeen",
+    "Eighteen",
+    "Nineteen",
+  ];
+  const tensWords = [
+    "",
+    "",
+    "Twenty",
+    "Thirty",
+    "Forty",
+    "Fifty",
+    "Sixty",
+    "Seventy",
+    "Eighty",
+    "Ninety",
+  ];
 
-export default function inWords(num) {
-  if ((num = num.toString()).length > 9) return "overflow";
-  let n = ("000000000" + num)
-    .substr(-9)
-    .match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
-  if (!n) return;
-  var str = "";
-  str +=
-    n[1] !== 0
-      ? (a[Number(n[1])] || b[n[1][0]] + " " + a[n[1][1]]) + "crore "
-      : "";
-  str +=
-    n[2] !== 0
-      ? (a[Number(n[2])] || b[n[2][0]] + " " + a[n[2][1]]) + "lakh "
-      : "";
-  str +=
-    n[3] !== 0
-      ? (a[Number(n[3])] || b[n[3][0]] + " " + a[n[3][1]]) + "thousand "
-      : "";
-  str +=
-    n[4] !== 0
-      ? (a[Number(n[4])] || b[n[4][0]] + " " + a[n[4][1]]) + "hundred "
-      : "";
-  str +=
-    n[5] !== 0
-      ? (str !== "" ? "and " : "") +
-        (a[Number(n[5])] || b[n[5][0]] + " " + a[n[5][1]]) +
-        "only "
-      : "";
-  return str;
+  let num = parseInt(amount, 10);
+  if (isNaN(num)) {
+    return "";
+  }
+
+  let wordsString = "";
+  if (num === 0) {
+    wordsString = "Zero";
+  } else if (num < 0) {
+    wordsString = "Minus " + inWords(-num);
+  } else {
+    if (num >= 10000000) {
+      wordsString += inWords(Math.floor(num / 10000000)) + " Crore ";
+      num %= 10000000;
+    }
+
+    if (num >= 100000) {
+      wordsString += inWords(Math.floor(num / 100000)) + " Lakh ";
+      num %= 100000;
+    }
+
+    if (num >= 1000) {
+      wordsString += inWords(Math.floor(num / 1000)) + " Thousand ";
+      num %= 1000;
+    }
+
+    if (num >= 100) {
+      wordsString += inWords(Math.floor(num / 100)) + " Hundred ";
+      num %= 100;
+    }
+
+    if (num >= 20) {
+      wordsString += tensWords[Math.floor(num / 10)] + " ";
+      num %= 10;
+    }
+
+    if (num > 0) {
+      wordsString += words[num] + " ";
+    }
+  }
+
+  return wordsString.trim();
 }

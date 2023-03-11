@@ -4,17 +4,30 @@ import "../styles/screens/NewBill.css";
 import inWords from "../utils/amountInWords";
 import Select from "react-select";
 import updateLocalStorage from "../utils/updateLocalStorage";
+import BillTemplate from "./BillTemplate";
+import { useNavigate } from "react-router-dom";
 
 const NewBill = () => {
-  const submitHandler = () => {};
+  const navigate = useNavigate();
 
   const [containsGST, setContainsGST] = useState(false);
   const [gstPercentage, setGSTPercentage] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
   const [productValues, setProductValues] = useState([]);
+  const [customerDetails, setCustomerDetails] = useState([]);
+  const [customerValues, setCustomerValues] = useState([]);
+  const [formDetails, setFormDetails] = useState({
+    invoice: "",
+    name: "",
+    address: "",
+    gstin: "",
+    vehicleNo: "",
+    date: "",
+  });
   const [tableValues, setTableValues] = useState([
     {
       productDescription0: "",
+      hsn0: "",
       weight0: 0, //26
       bags0: 0,
       qty0: 0, //bag *
@@ -28,6 +41,7 @@ const NewBill = () => {
     amount: 0,
     gst: 0,
     totalAmount: 0,
+    amountInWords: "",
   });
 
   const gstToogle = (e) => {
@@ -38,15 +52,30 @@ const NewBill = () => {
     updateLocalStorage();
 
     let temp = localStorage.getItem("goods");
+    let customers = localStorage.getItem("customers");
     temp = JSON.parse(temp);
+    customers = JSON.parse(customers);
 
     setProductDetails(temp);
+    setCustomerDetails(customers);
     let values = [];
     temp.map((singleProduct) => {
-      values.push({ label: singleProduct.name, value: singleProduct.name });
+      return values.push({
+        label: singleProduct.name,
+        value: singleProduct.name,
+      });
+    });
+
+    let customerValues = [];
+    customers.map((singleCustomer) => {
+      return customerValues.push({
+        label: singleCustomer.name,
+        value: singleCustomer.name,
+      });
     });
 
     setProductValues(values);
+    setCustomerValues(customerValues);
   }, []);
 
   useEffect(() => {
@@ -55,7 +84,7 @@ const NewBill = () => {
 
       tableValues.map((singleValue, index) => {
         let a = singleValue.qty0 * singleValue.rate0;
-        temp.push({ ...singleValue, [`amount${index}`]: a });
+        return temp.push({ ...singleValue, [`amount${index}`]: a });
       });
     };
 
@@ -67,17 +96,25 @@ const NewBill = () => {
       tableValues.map((singleValue, i) => {
         bags += parseFloat(singleValue[`bags${i}`]);
         qty += parseFloat(singleValue[`qty${i}`]);
-        amount += parseFloat(singleValue[`amount${i}`]);
+        return (amount += parseFloat(singleValue[`amount${i}`]));
       });
 
       let gst = 0;
       if (containsGST) {
-        console.log(gstPercentage);
         gst = (amount * gstPercentage) / 100;
       }
       let totalAmount = amount + gst + gst;
+      let amountInWords = inWords(totalAmount);
+      console.log(amountInWords);
 
-      setTableTotalValues({ bags, qty, amount, gst, totalAmount });
+      setTableTotalValues({
+        bags,
+        qty,
+        amount,
+        gst,
+        totalAmount,
+        amountInWords,
+      });
     };
     updateTableValues();
     calculateTotalRow();
@@ -85,7 +122,7 @@ const NewBill = () => {
 
   const inputChangeHandler = (e, index) => {
     const temp = tableValues;
-    console.log(temp[index][`${e.target.name}`]);
+
     temp[index][`${e.target.name}`] = e.target.value;
 
     temp[index][`qty${index}`] =
@@ -107,14 +144,10 @@ const NewBill = () => {
     temp[`rate${index}`] = 0;
     temp[`amount${index}`] = 0;
 
-    console.log([...tableValues, temp]);
-
     setTableValues([...tableValues, temp]);
   };
 
   const selectHandler = (e, index) => {
-    console.log(e.value);
-
     let filteredValue = productDetails.filter((product) => {
       return product.name === e.value;
     });
@@ -122,16 +155,44 @@ const NewBill = () => {
     filteredValue = filteredValue[0];
 
     let temp = tableValues;
-    console.log(temp, index);
+
     temp[index][`productDescription${index}`] = filteredValue.name;
     temp[index][`weight${index}`] = filteredValue.qty;
     temp[index][`rate${index}`] = filteredValue.rate;
+    temp[index][`hsn${0}`] = filteredValue["hsn-acs"];
 
     setTableValues([...temp]);
   };
 
+  const formInputChangeHandler = (e) => {
+    setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
+  };
+
+  const nameSelectHandler = (e) => {
+    let filteredValue = customerDetails.filter((customer) => {
+      return customer.name === e.value;
+    });
+
+    filteredValue = filteredValue[0];
+    setFormDetails({ ...formDetails, ...filteredValue });
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    let stateValues = {
+      containsGST: containsGST,
+      formDetails: formDetails,
+      gstPercentage: gstPercentage,
+      tableValues: tableValues,
+      tableTotalValues: tableTotalValues,
+    };
+
+    navigate("/bill", { state: stateValues });
+  };
+
   return (
-    <di>
+    <div className="section-new-bill">
       <Navbar />
       <form action="" onSubmit={submitHandler} className="form-container">
         <div className="input-container">
@@ -142,15 +203,36 @@ const NewBill = () => {
             name="invoice"
             id="invoice"
             onWheel={(e) => e.target.blur()}
+            onChange={formInputChangeHandler}
           />
         </div>
         <div className="input-container">
           <label htmlFor="">Name : </label>
-          <Select className="input-select" />
+          <Select
+            className="input-select"
+            onChange={nameSelectHandler}
+            options={customerValues}
+          />
         </div>
         <div className="input-container">
           <label htmlFor="">Date :</label>
-          <input type="text" className="billforminput" />
+          <input
+            type="text"
+            className="billforminput"
+            name="date"
+            value={formDetails.date}
+            onChange={formInputChangeHandler}
+          />
+        </div>
+        <div className="input-container">
+          <label htmlFor="">Vehicle No :</label>
+          <input
+            type="text"
+            className="billforminput"
+            name="vehicleNo"
+            value={formDetails.vehicleNo}
+            onChange={formInputChangeHandler}
+          />
         </div>
         <div className="input-container">
           <label htmlFor="">GST :</label>
@@ -188,7 +270,7 @@ const NewBill = () => {
             <tbody>
               {tableValues.map((singleValue, index) => {
                 return (
-                  <tr className="tr" key={tableValues}>
+                  <tr className="tr" key={tableValues + index}>
                     <td className="td">
                       <Select
                         className="form-table-selects"
@@ -316,8 +398,33 @@ const NewBill = () => {
             </tfoot>
           </table>
         </div>
+        <div className="btn-container">
+          <button className="submit-btn">
+            <p>Submit</p>
+          </button>
+        </div>
       </form>
-    </di>
+      {/* <div style={{}} className="printing-bill" id="bill">
+        <div className="bill-1" id="bill-1">
+          <BillTemplate
+            containsGST={containsGST}
+            formDetails={formDetails}
+            gstPercentage={gstPercentage}
+            tableValues={tableValues}
+            tableTotalValues={tableTotalValues}
+          />
+        </div>
+        <div className="bill-2" id="bill-2">
+          <BillTemplate
+            containsGST={containsGST}
+            formDetails={formDetails}
+            gstPercentage={gstPercentage}
+            tableValues={tableValues}
+            tableTotalValues={tableTotalValues}
+          />
+        </div>
+      </div> */}
+    </div>
   );
 };
 
