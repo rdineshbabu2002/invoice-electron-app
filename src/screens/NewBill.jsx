@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import "../styles/screens/NewBill.css";
 import inWords from "../utils/amountInWords";
 import Select from "react-select";
-import updateLocalStorage from "../utils/updateLocalStorage";
+
 import BillTemplate from "./BillTemplate";
 import { useNavigate } from "react-router-dom";
 
@@ -49,8 +49,6 @@ const NewBill = () => {
   };
 
   useEffect(() => {
-    updateLocalStorage();
-
     let temp = localStorage.getItem("goods");
     let customers = localStorage.getItem("customers");
     temp = JSON.parse(temp);

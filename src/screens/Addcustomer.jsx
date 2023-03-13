@@ -15,7 +15,6 @@ const Addcustomer = (props) => {
   });
   useEffect(() => {
     if (id !== undefined) {
-      // console.log(props.id);
       let temp = "";
       if (localStorage.getItem("customers")) {
         temp = localStorage.getItem("customers");

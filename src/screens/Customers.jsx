@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/screens/Customers.css";
-import updateLocalStorage from "../utils/updateLocalStorage";
+
 const Customers = () => {
-  updateLocalStorage();
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
@@ -13,6 +12,16 @@ const Customers = () => {
       setCustomers(JSON.parse(data));
     }
   }, []);
+
+  const delteCustomer = (i) => {
+    const data = localStorage.getItem("customers");
+    if (data) {
+      let temp = JSON.parse(data);
+      temp.splice(i, 1);
+      localStorage.setItem("customers", JSON.stringify(temp));
+      setCustomers(temp);
+    }
+  };
 
   return (
     <div>
@@ -43,7 +52,14 @@ const Customers = () => {
               </div>
               <div className="buttons">
                 <div className="Delete">
-                  <button className="delete-btn">DELETE</button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => {
+                      delteCustomer(i);
+                    }}
+                  >
+                    DELETE
+                  </button>
                 </div>
                 <div className="Edit">
                   <Link to={"/newcustomer/" + i} className="link">
