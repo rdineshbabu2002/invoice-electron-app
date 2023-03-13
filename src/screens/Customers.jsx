@@ -10,7 +10,7 @@ const Customers = () => {
       {/* <Link to={"/newcustomer"}>Add Customer</Link> */}
       <Link to={"/newcustomer/0"}>PCM TRADERS</Link>
       <div className="Head">Customer List</div>
-      <div className="Goods-cards">
+      <div className="Goods-cards ">
         {cust.map((val) => {
           return (
             <div className="Indv-cards">
