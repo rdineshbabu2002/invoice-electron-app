@@ -6,10 +6,9 @@ const Customers = () => {
   return (
     <div>
       <Navbar />
-      <Link className="" to={window.location.href + "/addcustomer"}>
-        Add Customer
-      </Link>
-      Customers
+      {/* <Link to={"/newcustomer"}>Add Customer</Link> */}
+      <Link to={"/newcustomer/0"}>PCM TRADERS</Link>
+      <div>Customer List</div>
     </div>
   );
 };
