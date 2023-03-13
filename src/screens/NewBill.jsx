@@ -404,26 +404,6 @@ const NewBill = () => {
           </button>
         </div>
       </form>
-      {/* <div style={{}} className="printing-bill" id="bill">
-        <div className="bill-1" id="bill-1">
-          <BillTemplate
-            containsGST={containsGST}
-            formDetails={formDetails}
-            gstPercentage={gstPercentage}
-            tableValues={tableValues}
-            tableTotalValues={tableTotalValues}
-          />
-        </div>
-        <div className="bill-2" id="bill-2">
-          <BillTemplate
-            containsGST={containsGST}
-            formDetails={formDetails}
-            gstPercentage={gstPercentage}
-            tableValues={tableValues}
-            tableTotalValues={tableTotalValues}
-          />
-        </div>
-      </div> */}
     </div>
   );
 };
