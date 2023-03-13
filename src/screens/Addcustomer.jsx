@@ -5,7 +5,7 @@ import "../styles/screens/Addcustomer.css";
 
 const Addcustomer = (props) => {
   const { id } = useParams();
-  // console.log(id);
+
   const [data, setdata] = useState({
     name: "",
     address: "",
@@ -15,17 +15,20 @@ const Addcustomer = (props) => {
     if (id !== undefined) {
       // console.log(props.id);
       let temp = "";
-      if (localStorage.getItem("customer")) {
-        temp = localStorage.getItem("customer");
+      if (localStorage.getItem("customers")) {
+        temp = localStorage.getItem("customers");
+
         if (temp) {
           temp = JSON.parse(temp);
-          // console.log(temp);
+          console.log(temp);
         }
       }
-      // console.log(temp[props.id].data);
-      setdata(temp[id].data);
+
+      console.log(temp[id]);
+
+      setdata(temp[id]);
     }
-  }, []);
+  }, [id]);
 
   const changeValue = (e) => {
     e.preventDefault();
@@ -48,18 +51,19 @@ const Addcustomer = (props) => {
 
   const addcustomer = (data) => {
     // console.log(data);
-    let temp = localStorage.getItem("customer");
+    let temp = localStorage.getItem("customers");
     if (!temp) {
       temp = [];
     } else {
       temp = JSON.parse(temp);
     }
     if (id !== undefined) {
-      temp[id].data = data;
+      temp[id] = data;
     } else {
       temp = [...temp, { data }];
     }
-    localStorage.setItem("customer", JSON.stringify(temp));
+    console.log(temp);
+    localStorage.setItem("customers", JSON.stringify(temp));
   };
 
   return (

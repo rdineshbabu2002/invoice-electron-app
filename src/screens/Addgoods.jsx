@@ -8,7 +8,7 @@ const Addgoods = (props) => {
 
   const [data, setdata] = useState({
     name: "",
-    hsn_acs: "",
+    "hsn-acs": "",
     qty: 0,
     rate: 0,
   });
@@ -20,11 +20,11 @@ const Addgoods = (props) => {
         temp = localStorage.getItem("goods");
         if (temp) {
           temp = JSON.parse(temp);
-          console.log(temp);
+          // console.log(temp);
         }
       }
       // console.log(temp[props.id].data);
-      setdata(temp[id].data);
+      setdata(temp[id]);
     }
   }, []);
   const changeValue = (e) => {
@@ -35,14 +35,6 @@ const Addgoods = (props) => {
   const submit = (e) => {
     e.preventDefault();
     addgoods(data);
-    // localStorage.removeItem("goods");
-    if (localStorage.getItem("goods")) {
-      let temp = localStorage.getItem("goods");
-      if (temp) {
-        console.log(JSON.parse(temp));
-      }
-    }
-    // console.log(data);
   };
 
   const addgoods = (data) => {
@@ -53,11 +45,11 @@ const Addgoods = (props) => {
       temp = JSON.parse(temp);
     }
     if (id !== undefined) {
-      temp[id].data = data;
+      temp[id] = data;
     } else {
       temp = [...temp, { data }];
     }
-
+    // console.log(temp);
     localStorage.setItem("goods", JSON.stringify(temp));
   };
 
@@ -88,11 +80,11 @@ const Addgoods = (props) => {
           <input
             required
             className="forminput"
-            name="hsn_acs"
+            name="hsn-acs"
             id="hsn_acs"
             placeholder="Enter HSN_ACS"
             onChange={changeValue}
-            value={data.hsn_acs}
+            value={data["hsn-acs"]}
           />
         </div>
         <div className="element">
