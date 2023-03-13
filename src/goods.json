@@ -6,9 +6,27 @@
     "rate": 1206
   },
   {
-    "name": "BPT 26 KG BOLIED RICE",
+    "name": "BPT 75 KG BOLIED RICE",
+    "hsn_acs": "10063010",
+    "qty": 75,
+    "rate": 3200
+  },
+  {
+    "name": "RNR 26 KG BOILED RICE",
     "hsn_acs": "10063010",
     "qty": 26,
-    "rate": 1206
+    "rate": 1200
+  },
+  {
+    "name": "RNR 75 KG BOILED RICE",
+    "hsn_acs": "10063010",
+    "qty": 75,
+    "rate": 3461
+  },
+  {
+    "name": "BOILED RICE BRAN",
+    "hsn_acs": "10063010",
+    "qty": 50,
+    "rate": 550
   }
 ]

@@ -22,7 +22,9 @@ const BillTemplate = () => {
 
   return (
     <div>
-      <button onClick={downloadPdf}>Print</button>
+      <button onClick={downloadPdf} className="bill-button">
+        Print
+      </button>
       <div className="printing-area" ref={componentRef}>
         <div className="bill-template-screen" id="bill">
           <div className="bill-page">
@@ -30,6 +32,12 @@ const BillTemplate = () => {
               <h1 className="bill-title txt-align-center">
                 SAKTHI MURUGAN RICE MILL
               </h1>
+              <p className="bill-from-address font-family-light txt-align-center">
+                280,Pasur Road, Sellathapalayam, Elumathur, Erode - 638104.
+              </p>
+              <p className="bill-form-gstno font-family-light txt-align-center">
+                GSTIN : 33ABMFS6116L1ZV
+              </p>
             </div>
             <p className="txt-align-center">
               <span className="invoice-title font-family-light">
@@ -47,21 +55,10 @@ const BillTemplate = () => {
                   className="bill-company-logo"
                 />
               </div>
-              <div className="bill-bill-address-container">
-                <p className="bill-bill-from-title font-family-light">
-                  Bill from
-                </p>
-                <p className="bill-from-name ">Sakthi Murugan Rice Mill</p>
-                <p className="bill-from-address font-family-light">
-                  280,Pasur Road, Sellathapalayam, Elumathur, Erode - 638104.
-                </p>
-                <p className="bill-form-gstno font-family-light">
-                  GSTIN : 33ABMFS6116L1ZV
-                </p>
-              </div>
+
               <div className="bill-bill-address-container ">
                 <p className="bill-bill-from-title font-family-light">
-                  Bill to
+                  Billing to
                 </p>
                 <p className="bill-from-name ">{formDetails.name}</p>
                 <p className="bill-from-address font-family-light">
@@ -176,7 +173,7 @@ const BillTemplate = () => {
               <span className="bill-amt-in-wrds-title font-family-light">
                 Amount in Words :{" "}
               </span>
-              {tableTotalValues.amountInWords}
+              {tableTotalValues.amountInWords + " only"}
             </p>
             <div className="bill-contacts-fssi-container">
               <div className="bill-contacts-container ">
@@ -283,16 +280,24 @@ const BillTemplate = () => {
             </div>
           </div>
         </div>
+
+        {/* ====================================== BILL COPY ======================================================== */}
         <div
           className="bill-template-screen"
           id="bill"
-          style={{ filter: "grayscale(100%) " }}
+          style={{ filter: "grayscale(100%);" }}
         >
           <div className="bill-page">
             <div className="bill-title-container">
               <h1 className="bill-title txt-align-center">
                 SAKTHI MURUGAN RICE MILL
               </h1>
+              <p className="bill-from-address font-family-light txt-align-center">
+                280,Pasur Road, Sellathapalayam, Elumathur, Erode - 638104.
+              </p>
+              <p className="bill-form-gstno font-family-light txt-align-center">
+                GSTIN : 33ABMFS6116L1ZV
+              </p>
             </div>
             <p className="txt-align-center">
               <span className="invoice-title font-family-light">
@@ -310,21 +315,10 @@ const BillTemplate = () => {
                   className="bill-company-logo"
                 />
               </div>
-              <div className="bill-bill-address-container">
-                <p className="bill-bill-from-title font-family-light">
-                  Bill from
-                </p>
-                <p className="bill-from-name ">Sakthi Murugan Rice Mill</p>
-                <p className="bill-from-address font-family-light">
-                  280,Pasur Road, Sellathapalayam, Elumathur, Erode - 638104.
-                </p>
-                <p className="bill-form-gstno font-family-light">
-                  GSTIN : 33ABMFS6116L1ZV
-                </p>
-              </div>
+
               <div className="bill-bill-address-container ">
                 <p className="bill-bill-from-title font-family-light">
-                  Bill to
+                  Billing to
                 </p>
                 <p className="bill-from-name ">{formDetails.name}</p>
                 <p className="bill-from-address font-family-light">
@@ -439,7 +433,7 @@ const BillTemplate = () => {
               <span className="bill-amt-in-wrds-title font-family-light">
                 Amount in Words :{" "}
               </span>
-              {tableTotalValues.amountInWords}
+              {tableTotalValues.amountInWords + " only"}
             </p>
             <div className="bill-contacts-fssi-container">
               <div className="bill-contacts-container ">

@@ -6,7 +6,7 @@ const Goods = () => {
   return (
     <div>
       <Navbar />
-      <div className="Goods-cards">
+      <div className="Goods-cards good-card-container">
         {goods.map((val) => {
           return (
             <div className="Indv-cards">

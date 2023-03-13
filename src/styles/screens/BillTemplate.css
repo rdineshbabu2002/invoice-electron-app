@@ -81,7 +81,6 @@
 }
 
 .bill-bill-address-container {
-  width: 15rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -93,10 +92,12 @@
 
 .bill-from-address {
   font-size: 14px;
+  color: #333;
 }
 
 .bill-form-gstno {
   font-size: 14px;
+  color: #333;
 }
 
 .bos-title {
@@ -261,4 +262,14 @@
 
 .printing-area {
   margin-right: 3rem;
+}
+
+.bill-button {
+  margin: 1rem 0 0 2rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #40c057;
+  color: #fff;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
 }
