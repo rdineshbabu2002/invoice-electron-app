@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Addgoods = (props) => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [data, setdata] = useState({
     name: "",
@@ -20,10 +21,8 @@ const Addgoods = (props) => {
         temp = localStorage.getItem("goods");
         if (temp) {
           temp = JSON.parse(temp);
-          // console.log(temp);
         }
       }
-      // console.log(temp[props.id].data);
       setdata(temp[id]);
     }
   }, []);
@@ -47,10 +46,11 @@ const Addgoods = (props) => {
     if (id !== undefined) {
       temp[id] = data;
     } else {
-      temp = [...temp, { data }];
+      temp = [...temp, data];
     }
     // console.log(temp);
     localStorage.setItem("goods", JSON.stringify(temp));
+    navigate("/");
   };
 
   return (

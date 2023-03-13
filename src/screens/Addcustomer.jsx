@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/screens/Addcustomer.css";
+import { useNavigate } from "react-router-dom";
 
 const Addcustomer = (props) => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [data, setdata] = useState({
     name: "",
@@ -39,18 +41,10 @@ const Addcustomer = (props) => {
   const submit = (e) => {
     e.preventDefault();
     addcustomer(data);
-    // localStorage.removeItem("goods");
-    // if (localStorage.getItem("customer")) {
-    //   let temp = localStorage.getItem("customer");
-    //   if (temp) {
-    //     console.log(JSON.parse(temp));
-    //   }
-    // }
-    // console.log(data);
   };
 
   const addcustomer = (data) => {
-    // console.log(data);
+    console.log(data);
     let temp = localStorage.getItem("customers");
     if (!temp) {
       temp = [];
@@ -60,10 +54,11 @@ const Addcustomer = (props) => {
     if (id !== undefined) {
       temp[id] = data;
     } else {
-      temp = [...temp, { data }];
+      temp = [...temp, data];
     }
-    console.log(temp);
+
     localStorage.setItem("customers", JSON.stringify(temp));
+    navigate("/");
   };
 
   return (

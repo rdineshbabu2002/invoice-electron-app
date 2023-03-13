@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/screens/Customers.css";
-import cust from "../customers.json";
+import updateLocalStorage from "../utils/updateLocalStorage";
 const Customers = () => {
+  updateLocalStorage();
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("customers");
+    if (data) {
+      setCustomers(JSON.parse(data));
+    }
+  }, []);
+
   return (
     <div>
       <Navbar />
-      {/* <Link to={"/newcustomer"}>Add Customer</Link> */}
-      <Link to={"/newcustomer/0"}>PCM TRADERS</Link>
-      <div className="Head">Customer List</div>
-      <div className="Goods-cards ">
-        {cust.map((val) => {
+      <div className="customer-header">
+        <p>Customers List</p>
+        <Link className="add-customer" to={"/newcustomer"}>
+          Add Customer
+        </Link>
+      </div>
+      <div className="cusotmer-cards customer-card-container">
+        {customers.map((val, i) => {
           return (
-            <div className="Indv-cards">
+            <div className="customer-Indv-cards" key={i}>
               <div className="Labels">
                 <div className="Label-name">
                   <p className="Attribute">NAME:</p>
@@ -33,7 +46,9 @@ const Customers = () => {
                   <button className="delete-btn">DELETE</button>
                 </div>
                 <div className="Edit">
-                  <button className="edit-btn">EDIT</button>
+                  <Link to={"/newcustomer/" + i} className="link">
+                    <button className="edit-btn">EDIT</button>
+                  </Link>
                 </div>
               </div>
             </div>
