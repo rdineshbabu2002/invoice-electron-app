@@ -273,3 +273,7 @@
   border-radius: 0.2rem;
   cursor: pointer;
 }
+
+.bw-print {
+  filter: grayscale(100%);
+}
