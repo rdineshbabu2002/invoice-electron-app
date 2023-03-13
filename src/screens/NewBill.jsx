@@ -202,6 +202,7 @@ const NewBill = () => {
             className="billforminput"
             name="invoice"
             id="invoice"
+            min={0}
             onWheel={(e) => e.target.blur()}
             onChange={formInputChangeHandler}
           />
@@ -249,6 +250,8 @@ const NewBill = () => {
               type="number"
               className="billforminput"
               value={gstPercentage}
+              min={0}
+              max={100}
               onWheel={(e) => e.target.blur()}
               onChange={(e) => {
                 setGSTPercentage(e.target.value);
