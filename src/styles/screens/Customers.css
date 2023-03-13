@@ -1,0 +1,53 @@
+* {
+  font-size: small;
+}
+.Head {
+  font-size: x-large;
+  text-align: center;
+}
+.Goods-cards {
+  padding: 30px 0 0 20px;
+  display: flex;
+  gap: 20px;
+}
+.Indv-cards {
+  display: flex;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  height: 200px;
+  width: 230px;
+  justify-content: center;
+  box-shadow: 2px 3px 3px 2px dimgray;
+  flex-direction: column;
+}
+.Attribute-value {
+  color: #2f2e2e;
+  padding-left: 3px;
+}
+.Label-name,
+.Label-addr,
+.Label-gst {
+  display: flex;
+  padding-bottom: 10px;
+}
+.Label-name {
+  padding-top: 10px;
+}
+.delete-btn,
+.edit-btn {
+  font-family: "PoppinsMedium";
+  background-color: #51cf66;
+  padding: 0.2rem 0.4rem;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+  padding-top: 15px;
+}
+.Edit {
+  padding-left: 90px;
+}
