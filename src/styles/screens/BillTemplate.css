@@ -6,21 +6,11 @@
   button {
     display: none;
   }
-
-  /* Add some margins to the page */
   body {
     margin: 1cm;
   }
-
-  /* Hide the footer */
   footer {
     display: none;
-  }
-
-  /* Set the page to black and white */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
   }
 
   @page {
