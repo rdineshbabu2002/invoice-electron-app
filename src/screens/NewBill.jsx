@@ -200,7 +200,6 @@ const NewBill = () => {
             className="billforminput"
             name="invoice"
             id="invoice"
-            min={0}
             onWheel={(e) => e.target.blur()}
             onChange={formInputChangeHandler}
           />
