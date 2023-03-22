@@ -247,11 +247,11 @@ const NewBill = () => {
               type="number"
               className="billforminput"
               value={gstPercentage}
-              min={0}
-              max={100}
               onWheel={(e) => e.target.blur()}
               onChange={(e) => {
-                setGSTPercentage(e.target.value);
+                if (e.target.value >= 0 && e.target.value < 100) {
+                  setGSTPercentage(e.target.value);
+                }
               }}
             />
           </div>
