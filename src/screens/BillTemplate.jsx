@@ -14,6 +14,9 @@ const BillTemplate = () => {
     tableTotalValues,
   } = state;
 
+  console.log(formDetails);
+  console.log(tableValues);
+
   const componentRef = useRef();
 
   const downloadPdf = useReactToPrint({

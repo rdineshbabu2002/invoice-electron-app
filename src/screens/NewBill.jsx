@@ -51,29 +51,31 @@ const NewBill = () => {
   useEffect(() => {
     let temp = localStorage.getItem("goods");
     let customers = localStorage.getItem("customers");
-    temp = JSON.parse(temp);
-    customers = JSON.parse(customers);
+    if (temp && customers) {
+      temp = JSON.parse(temp);
+      customers = JSON.parse(customers);
 
-    setProductDetails(temp);
-    setCustomerDetails(customers);
-    let values = [];
-    temp.map((singleProduct) => {
-      return values.push({
-        label: singleProduct.name,
-        value: singleProduct.name,
+      setProductDetails(temp);
+      setCustomerDetails(customers);
+      let values = [];
+      temp.map((singleProduct) => {
+        return values.push({
+          label: singleProduct.name,
+          value: singleProduct.name,
+        });
       });
-    });
 
-    let customerValues = [];
-    customers.map((singleCustomer) => {
-      return customerValues.push({
-        label: singleCustomer.name,
-        value: singleCustomer.name,
+      let customerValues = [];
+      customers.map((singleCustomer) => {
+        return customerValues.push({
+          label: singleCustomer.name,
+          value: singleCustomer.name,
+        });
       });
-    });
 
-    setProductValues(values);
-    setCustomerValues(customerValues);
+      setProductValues(values);
+      setCustomerValues(customerValues);
+    }
   }, []);
 
   useEffect(() => {
@@ -100,8 +102,10 @@ const NewBill = () => {
       let gst = 0;
       if (containsGST) {
         gst = (amount * gstPercentage) / 100;
+        gst = Number(gst.toFixed(2));
       }
       let totalAmount = amount + gst + gst;
+      totalAmount = Number(totalAmount.toFixed(2));
       let amountInWords = inWords(totalAmount);
       console.log(amountInWords);
 
@@ -157,7 +161,7 @@ const NewBill = () => {
     temp[index][`productDescription${index}`] = filteredValue.name;
     temp[index][`weight${index}`] = filteredValue.qty;
     temp[index][`rate${index}`] = filteredValue.rate;
-    temp[index][`hsn${0}`] = filteredValue["hsn-acs"];
+    temp[index][`hsn${index}`] = filteredValue["hsn-acs"];
 
     setTableValues([...temp]);
   };
@@ -200,7 +204,6 @@ const NewBill = () => {
             className="billforminput"
             name="invoice"
             id="invoice"
-            min={0}
             onWheel={(e) => e.target.blur()}
             onChange={formInputChangeHandler}
           />
@@ -248,11 +251,11 @@ const NewBill = () => {
               type="number"
               className="billforminput"
               value={gstPercentage}
-              min={0}
-              max={100}
               onWheel={(e) => e.target.blur()}
               onChange={(e) => {
-                setGSTPercentage(e.target.value);
+                if (e.target.value >= 0 && e.target.value < 100) {
+                  setGSTPercentage(e.target.value);
+                }
               }}
             />
           </div>
