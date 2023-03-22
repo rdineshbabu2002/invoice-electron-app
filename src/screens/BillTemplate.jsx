@@ -176,7 +176,7 @@ const BillTemplate = () => {
               <span className="bill-amt-in-wrds-title font-family-light">
                 Amount in Words :{" "}
               </span>
-              {tableTotalValues.amountInWords + " only"}
+              {tableTotalValues.amountInWords + " ONLY"}
             </p>
             <div className="bill-contacts-fssi-container">
               <div className="bill-contacts-container ">
@@ -432,7 +432,7 @@ const BillTemplate = () => {
               <span className="bill-amt-in-wrds-title font-family-light">
                 Amount in Words :{" "}
               </span>
-              {tableTotalValues.amountInWords + " only"}
+              {tableTotalValues.amountInWords + " ONLY"}
             </p>
             <div className="bill-contacts-fssi-container">
               <div className="bill-contacts-container ">
