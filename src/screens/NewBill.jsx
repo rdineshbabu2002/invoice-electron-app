@@ -3,13 +3,10 @@ import Navbar from "../components/Navbar";
 import "../styles/screens/NewBill.css";
 import inWords from "../utils/amountInWords";
 import Select from "react-select";
-
-import BillTemplate from "./BillTemplate";
 import { useNavigate } from "react-router-dom";
 
 const NewBill = () => {
   const navigate = useNavigate();
-
   const [containsGST, setContainsGST] = useState(false);
   const [gstPercentage, setGSTPercentage] = useState(0);
   const [productDetails, setProductDetails] = useState([]);

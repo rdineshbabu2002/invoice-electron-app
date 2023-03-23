@@ -285,8 +285,8 @@ const BillTemplate = () => {
         </div>
 
         {/* ====================================== BILL COPY ======================================================== */}
-        <div className="bill-template-screen bw-print" id="bill">
-          <div className="bill-page">
+        <div className="bill-template-screen bw-print" id="bill-2">
+          <div className="bill-page mt-10">
             <div className="bill-title-container">
               <h1 className="bill-title txt-align-center">
                 SAKTHI MURUGAN RICE MILL
