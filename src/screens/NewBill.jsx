@@ -41,6 +41,8 @@ const NewBill = () => {
     amountInWords: "",
   });
 
+  const [amountInWords, setAmountInWords] = useState("");
+
   const gstToogle = (e) => {
     setContainsGST(e.target.checked);
   };
@@ -103,8 +105,8 @@ const NewBill = () => {
       }
       let totalAmount = amount + gst + gst;
       totalAmount = Number(totalAmount.toFixed(2));
-      let amountInWords = inWords(totalAmount);
-      console.log(amountInWords);
+      // let amountInWords = amountInWords;
+      // console.log(amountInWords);
 
       setTableTotalValues({
         bags,
@@ -185,6 +187,7 @@ const NewBill = () => {
       gstPercentage: gstPercentage,
       tableValues: tableValues,
       tableTotalValues: tableTotalValues,
+      amountInWords: amountInWords,
     };
 
     navigate("/bill", { state: stateValues });
@@ -203,6 +206,7 @@ const NewBill = () => {
             id="invoice"
             onWheel={(e) => e.target.blur()}
             onChange={formInputChangeHandler}
+            required
           />
         </div>
         <div className="input-container">
@@ -211,6 +215,7 @@ const NewBill = () => {
             className="input-select"
             onChange={nameSelectHandler}
             options={customerValues}
+            required
           />
         </div>
         <div className="input-container">
@@ -221,6 +226,7 @@ const NewBill = () => {
             name="date"
             value={formDetails.date}
             onChange={formInputChangeHandler}
+            required
           />
         </div>
         <div className="input-container">
@@ -231,6 +237,7 @@ const NewBill = () => {
             name="vehicleNo"
             value={formDetails.vehicleNo}
             onChange={formInputChangeHandler}
+            required
           />
         </div>
         <div className="input-container">
@@ -284,6 +291,7 @@ const NewBill = () => {
                         onChange={(e) => {
                           selectHandler(e, index);
                         }}
+                        required
                       />
                     </td>
                     <td className="td">
@@ -296,6 +304,7 @@ const NewBill = () => {
                         onChange={(e) => {
                           inputChangeHandler(e, index);
                         }}
+                        required
                       />
                     </td>
                     <td className="td">
@@ -398,6 +407,17 @@ const NewBill = () => {
               </tr>
             </tfoot>
           </table>
+        </div>
+        <div className="amt-in-words-container">
+          <p className="amt-in-words">Amount in words : </p>
+          <input
+            className="amt-in-words-input"
+            placeholder="Amount In Words"
+            value={amountInWords}
+            onChange={(e) => {
+              setAmountInWords(e.target.value);
+            }}
+          />
         </div>
         <div className="btn-container">
           <button className="submit-btn">

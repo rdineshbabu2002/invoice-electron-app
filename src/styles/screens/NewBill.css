@@ -82,3 +82,12 @@
   border-radius: 3px;
   cursor: pointer;
 }
+
+.amt-in-words-container {
+  margin: 1rem 0;
+}
+
+.amt-in-words-input {
+  width: 800px;
+  padding: 0.5rem 0.5rem;
+}
