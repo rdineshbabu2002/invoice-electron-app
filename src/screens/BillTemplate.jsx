@@ -55,7 +55,9 @@ const BillTemplate = () => {
             <p className="txt-align-center">
               <span className="invoice-title font-family-light">
                 {containsGST ? "Tax Invoice No" : "Invoice No"} :{" "}
-                {containsGST ? "T" + formDetails.invoice : formDetails.invoice}
+                {containsGST
+                  ? "GST" + formDetails.invoice
+                  : formDetails.invoice}
               </span>
             </p>
             <p className="bill-date">
@@ -139,7 +141,7 @@ const BillTemplate = () => {
                           <td></td>
                           <td></td>
                           <td className="bill-table-body font-family-light">
-                            CGST {gstPercentage}%
+                            Add CGST {gstPercentage}%
                           </td>
                           <td className="bill-table-body font-family-light">
                             {tableTotalValues.gst}
@@ -151,7 +153,7 @@ const BillTemplate = () => {
                           <td></td>
                           <td></td>
                           <td className="bill-table-body font-family-light">
-                            SGST {gstPercentage}%
+                            Add SGST {gstPercentage}%
                           </td>
                           <td className="bill-table-body font-family-light">
                             {tableTotalValues.gst}
