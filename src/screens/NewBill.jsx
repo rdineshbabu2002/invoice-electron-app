@@ -94,7 +94,9 @@ const NewBill = () => {
 
       tableValues.map((singleValue, i) => {
         bags += parseFloat(singleValue[`bags${i}`]);
+        bags = Number(bags.toFixed(2));
         qty += parseFloat(singleValue[`qty${i}`]);
+        qty = Number(qty.toFixed(2));
         return (amount += parseFloat(singleValue[`amount${i}`]));
       });
 
@@ -129,8 +131,15 @@ const NewBill = () => {
     temp[index][`qty${index}`] =
       temp[index][`weight${index}`] * temp[index][`bags${index}`];
 
+    temp[index][`qty${index}`] = Number(temp[index][`qty${index}`].toFixed(2));
+
     temp[index][`amount${index}`] =
       temp[index][`bags${index}`] * temp[index][`rate${index}`];
+
+    temp[index][`amount${index}`] = Number(
+      temp[index][`amount${index}`].toFixed(2)
+    );
+
     setTableValues([...temp]);
   };
 
