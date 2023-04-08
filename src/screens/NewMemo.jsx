@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../styles/screens/NewMemo.css";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+
 const NewMemo = () => {
+  const navigate = useNavigate();
   const [headerValues, setHeaderValues] = useState({
     name: "",
     date: "",
   });
+  const [total, setTotal] = useState(0);
 
   const [tableValues, setTableValues] = useState([
     {
@@ -14,6 +18,16 @@ const NewMemo = () => {
       total0: 0,
     },
   ]);
+
+  useEffect(() => {
+    let totalValue = 0;
+
+    tableValues.forEach((singleValue, i) => {
+      totalValue += singleValue[`total${i}`];
+    });
+
+    setTotal(totalValue);
+  }, [tableValues]);
 
   const handleHeaderChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +45,9 @@ const NewMemo = () => {
 
   const addRowHandler = () => {
     let index = tableValues.length;
-
+    if (index >= 4) {
+      return;
+    }
     let temp = {};
     temp[`rate${index}`] = 0;
     temp[`amount${index}`] = 0;
@@ -39,12 +55,31 @@ const NewMemo = () => {
     setTableValues([...tableValues, temp]);
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(headerValues);
+    console.log(tableValues);
+    console.log(total);
+
+    let stateValues = {
+      headerValues,
+      tableValues,
+      total,
+    };
+
+    navigate("/memo", { state: stateValues });
+  };
+
   return (
     <>
       <Navbar />
       <div>
-        <form action="" className="memo-form-container">
-          <div className="input-container">
+        <form
+          action=""
+          className="memo-form-container"
+          onSubmit={submitHandler}
+        >
+          <div className="input-container" style={{ marginTop: 50 }}>
             <label htmlFor="name">Name : </label>
             <input
               type="text"
@@ -73,8 +108,8 @@ const NewMemo = () => {
             <table>
               <thead>
                 <tr>
+                  <th className="th">Bags</th>
                   <th className="th">Rate</th>
-                  <th className="th">Amount</th>
                   <th className="th">Total</th>
                 </tr>
               </thead>
