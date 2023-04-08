@@ -1,0 +1,97 @@
+@media print {
+  .memo-th {
+    print-color-adjust: exact;
+  }
+}
+.memo-template-container {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* background-color: #333; */
+}
+.memo-bill {
+  width: 210mm;
+  height: 148mm;
+  background-color: #fff;
+  margin: 1rem;
+  position: relative;
+}
+
+.memo-header {
+  text-align: center;
+}
+
+.memo-memo-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.memo-name-date-container {
+  display: flex;
+  margin: 1rem 3rem 0 3rem;
+  justify-content: space-between;
+}
+
+.memo-table {
+  margin: 1rem 3rem 0 3rem;
+  border-collapse: collapse;
+  /* border: 1px solid #333; */
+}
+
+.memo-td {
+  font-family: "PoppinsMedium";
+}
+
+.memo-th,
+.memo-td {
+  border: 1px solid #333;
+  padding: 0.5rem;
+  text-align: center;
+}
+.memo-name,
+.memo-date {
+  font-family: "PoppinsLight";
+}
+.memo-name-value,
+.memo-date-value {
+  font-family: "PoppinsMedium";
+}
+
+.memo-sno {
+  width: 7rem;
+}
+
+.memo-pro-des {
+  width: 30rem;
+}
+
+.memo-amount {
+  width: 7rem;
+}
+
+.memo-table-container {
+  height: 18rem;
+}
+
+.memo-total-value,
+.memo-total {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.memo-auth-sign {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+}
+
+.memo-table-body {
+}
+
+.memo-footer {
+  text-align: center;
+  /* background-color: red; */
+  position: absolute;
+  bottom: 2rem;
+  right: 4rem;
+}

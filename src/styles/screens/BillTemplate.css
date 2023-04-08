@@ -1,5 +1,5 @@
 @media print {
-  th {
+  .bill-table-header-title {
     background-color: #40c057 !important;
     print-color-adjust: exact;
   }

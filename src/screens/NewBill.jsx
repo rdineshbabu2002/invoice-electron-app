@@ -41,7 +41,7 @@ const NewBill = () => {
     amountInWords: "",
   });
 
-  const [amountInWords, setAmountInWords] = useState("");
+  // const [amountInWords, setAmountInWords] = useState("");
 
   const gstToogle = (e) => {
     setContainsGST(e.target.checked);
@@ -107,8 +107,8 @@ const NewBill = () => {
       }
       let totalAmount = amount + gst + gst;
       totalAmount = Number(totalAmount.toFixed(2));
-      // let amountInWords = amountInWords;
-      // console.log(amountInWords);
+      let amountInWords = inWords(totalAmount);
+      console.log(amountInWords);
 
       setTableTotalValues({
         bags,
@@ -196,7 +196,6 @@ const NewBill = () => {
       gstPercentage: gstPercentage,
       tableValues: tableValues,
       tableTotalValues: tableTotalValues,
-      amountInWords: amountInWords,
     };
 
     navigate("/bill", { state: stateValues });
@@ -422,9 +421,13 @@ const NewBill = () => {
           <input
             className="amt-in-words-input"
             placeholder="Amount In Words"
-            value={amountInWords}
+            name="amountInWords"
+            value={tableTotalValues.amountInWords}
             onChange={(e) => {
-              setAmountInWords(e.target.value);
+              setTableTotalValues({
+                ...tableTotalValues,
+                [e.target.name]: e.target.value,
+              });
             }}
           />
         </div>

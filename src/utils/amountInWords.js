@@ -1,72 +1,92 @@
-export default function convertToWords(num) {
+export default function amountInWords(amount) {
+  //convert num to amount in words including paise in indian style
   const ones = [
     "",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Eleven",
+    "Twelve",
+    "Thirteen",
+    "Fourteen",
+    "Fifteen",
+    "Sixteen",
+    "Seventeen",
+    "Eighteen",
+    "Nineteen",
   ];
   const tens = [
     "",
     "",
-    "twenty",
-    "thirty",
-    "forty",
-    "fifty",
-    "sixty",
-    "seventy",
-    "eighty",
-    "ninety",
+    "Twenty",
+    "Thirty",
+    "Forty",
+    "Fifty",
+    "Sixty",
+    "Seventy",
+    "Eighty",
+    "Ninety",
   ];
-  const scales = ["", "thousand", "lakh", "crore"];
+  const crores = ["", "Crore", "Crores"];
+  const lakhs = ["", "Lakh", "Lakhs"];
+  const thousands = ["", "Thousand", "Thousands"];
+  const hundreds = ["", "Hundred"];
 
-  let numArr = num.toString().split(".");
-  let rupees = parseInt(numArr[0]);
-  let paise = parseInt(numArr[1]);
+  const numArr = amount.toString().split(".");
+  const rupees = parseInt(numArr[0], 10);
+  const paise = parseInt(numArr[1], 10);
+  let words = "";
 
-  let rupeesWords = "";
-  let paiseWords = "";
+  function convertNumberToWords(num) {
+    let words = "";
 
-  if (rupees === 0) {
-    rupeesWords = "zero rupees";
-  } else {
-    let scaleCount = 0;
-    while (rupees > 0) {
-      let chunk = rupees % 100;
-      if (chunk !== 0) {
-        let chunkWords = "";
-        if (chunk < 10) {
-          chunkWords = ones[chunk];
-        } else if (chunk < 20) {
-          chunkWords = ones[chunk % 10] + "teen";
-        } else {
-          chunkWords = tens[Math.floor(chunk / 10)] + " " + ones[chunk % 10];
-        }
-        rupeesWords = chunkWords + " " + scales[scaleCount] + " " + rupeesWords;
+    if (num < 20) {
+      words = ones[num];
+    } else if (num < 100) {
+      words = tens[Math.floor(num / 10)] + " " + ones[num % 10];
+    } else if (num < 1000) {
+      words = ones[Math.floor(num / 100)] + " " + hundreds[1] + " ";
+      if (num % 100) {
+        words += "and " + convertNumberToWords(num % 100);
       }
-      rupees = Math.floor(rupees / 100);
-      scaleCount++;
-    }
-    rupeesWords += "rupees";
-  }
-
-  if (paise === 0) {
-    paiseWords = "only";
-  } else {
-    if (paise < 10) {
-      paiseWords = ones[paise] + " paise only";
-    } else if (paise < 20) {
-      paiseWords = ones[paise % 10] + "teen paise only";
+    } else if (num < 100000) {
+      words =
+        convertNumberToWords(Math.floor(num / 1000)) + " " + thousands[2] + " ";
+      if (num % 1000) {
+        words += convertNumberToWords(num % 1000);
+      }
+    } else if (num < 10000000) {
+      words =
+        convertNumberToWords(Math.floor(num / 100000)) + " " + lakhs[2] + " ";
+      if (num % 100000) {
+        words += convertNumberToWords(num % 100000);
+      }
     } else {
-      paiseWords =
-        tens[Math.floor(paise / 10)] + " " + ones[paise % 10] + " paise only";
+      words =
+        convertNumberToWords(Math.floor(num / 10000000)) +
+        " " +
+        crores[2] +
+        " ";
+      if (num % 10000000) {
+        words += convertNumberToWords(num % 10000000);
+      }
     }
+    return words;
   }
 
-  return rupeesWords + " and " + paiseWords;
+  words = convertNumberToWords(rupees);
+  words += " Rupees ";
+
+  if (paise) {
+    words += "and " + convertNumberToWords(paise) + " Paise";
+  }
+
+  return words;
 }

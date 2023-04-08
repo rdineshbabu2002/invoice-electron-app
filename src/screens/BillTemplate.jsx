@@ -14,7 +14,6 @@ const BillTemplate = () => {
     gstPercentage,
     tableValues,
     tableTotalValues,
-    amountInWords,
   } = state;
 
   console.log(formDetails);
@@ -189,7 +188,7 @@ const BillTemplate = () => {
               <span className="bill-amt-in-wrds-title font-family-light">
                 Amount in Words :{" "}
               </span>
-              {amountInWords + " only"}
+              {tableTotalValues.amountInWords + " only"}
             </p>
             <div className="bill-contacts-fssi-container">
               <div className="bill-contacts-container ">
@@ -448,7 +447,7 @@ const BillTemplate = () => {
               <span className="bill-amt-in-wrds-title font-family-light">
                 Amount in Words :{" "}
               </span>
-              {amountInWords + " only"}
+              {tableTotalValues.amountInWords + " only"}
             </p>
             <div className="bill-contacts-fssi-container">
               <div className="bill-contacts-container ">
