@@ -52,7 +52,7 @@ const MemoTemplate = () => {
               <tbody className="memo-table-body">
                 <tr>
                   <th className="memo-th memo-sno">S.No</th>
-                  <th className="memo-th memo-pro-des">Product Description</th>
+                  <th className="memo-th memo-pro-des">Rate</th>
                   <th className="memo-th memo-amount">Amount</th>
                 </tr>
                 {tableValues.map((singleValue, index) => {
