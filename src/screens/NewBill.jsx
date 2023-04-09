@@ -106,7 +106,7 @@ const NewBill = () => {
         gst = Number(gst.toFixed(2));
       }
       let totalAmount = amount + gst + gst;
-      totalAmount = Number(totalAmount.toFixed(2));
+      totalAmount = totalAmount.toFixed(2);
       let amountInWords = inWords(totalAmount);
       console.log(amountInWords);
 

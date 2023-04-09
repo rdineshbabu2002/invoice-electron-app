@@ -25,7 +25,7 @@ const Addgoods = (props) => {
       }
       setdata(temp[id]);
     }
-  }, []);
+  }, [id]);
   const changeValue = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
