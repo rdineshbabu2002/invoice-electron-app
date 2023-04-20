@@ -1,0 +1,31 @@
+{
+  "containsGST": true,
+  "formDetails": {
+    "invoice": "001",
+    "name": "PCM TRADERS 123",
+    "address": "517/6, Petthampalayam Road, Perundurai.",
+    "gstin": "33ABMFS6116L1ZV",
+    "vehicleNo": "TN33BB3621",
+    "date": "01-04-2023"
+  },
+  "gstPercentage": "2.5",
+  "tableValues": [
+    {
+      "productDescription0": "ABC",
+      "hsn0": "12345678",
+      "weight0": "26",
+      "bags0": "250",
+      "qty0": 6500,
+      "rate0": "1000",
+      "amount0": 250000
+    }
+  ],
+  "tableTotalValues": {
+    "bags": 250,
+    "qty": 6500,
+    "amount": 250000,
+    "gst": 6250,
+    "totalAmount": "262500.00",
+    "amountInWords": "Two Lakhs Sixty Two Thousands Five Hundred  Rupees "
+  }
+}
