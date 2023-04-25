@@ -16,8 +16,7 @@ const BillTemplate = () => {
     tableTotalValues,
   } = state;
 
-  console.log(formDetails);
-  console.log(tableValues);
+  console.log(state);
 
   const componentRef = useRef();
 
