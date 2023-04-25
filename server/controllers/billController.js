@@ -1,16 +1,38 @@
 const Bill = require("../models/billModel");
-const getAllBills = (req, res) => {
-  const allBills = Bill.find({});
+const catchAsync = require("../utils/catchAsync");
 
-  res.status(200).json({ name: "Hello" });
-};
+const getAllBills = catchAsync(async (req, res) => {
+  const allBills = await Bill.find({}).sort({ date: -1 });
 
-const createBill = (req, res) => {
-  res.status(200).json({ name: "create Bill" });
-};
+  res.status(200).json({
+    status: "success",
+    data: {
+      bills: [...allBills],
+    },
+  });
+});
 
-const getSingleBill = (req, res) => {
-  res.status(200).json({ name: "get single bill" });
-};
+const createBill = catchAsync(async (req, res) => {
+  const newBill = await Bill.create(req.body);
+  res.status(200).json({
+    status: "success",
+    data: { ...newBill },
+  });
+});
 
-module.exports = { getAllBills, createBill, getSingleBill };
+const getSingleBill = catchAsync(async (req, res) => {
+  const singleBill = await Bill.findById(req.params.id);
+  res.status(200).json({
+    status: "success",
+    data: { ...singleBill },
+  });
+});
+
+const deleteBill = catchAsync(async (req, res) => {
+  const deletedBill = await Bill.findByIdAndDelete(req.params.id);
+  res.status(200).json({
+    status: "success",
+  });
+});
+
+module.exports = { getAllBills, createBill, getSingleBill, deleteBill };
