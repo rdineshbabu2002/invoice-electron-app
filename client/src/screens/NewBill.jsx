@@ -198,6 +198,18 @@ const NewBill = () => {
       tableTotalValues: tableTotalValues,
     };
 
+    console.log(stateValues);
+
+    const sendData = async () => {
+      const response = await fetch("/newbill", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(stateValues),
+      });
+    };
+
+    sendData();
+
     navigate("/bill", { state: stateValues });
   };
 
