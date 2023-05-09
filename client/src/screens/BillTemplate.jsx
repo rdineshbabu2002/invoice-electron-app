@@ -36,6 +36,7 @@ const BillTemplate = () => {
       <button onClick={goToHome} className="bill-button">
         Go to Home
       </button>
+
       <div className="printing-area" ref={componentRef}>
         <div className="bill-template-screen" id="bill">
           <div className="bill-page">
@@ -163,19 +164,19 @@ const BillTemplate = () => {
                       <td className="bill-table-total prod-des">
                         {containsGST ? "" : "Exempted Goods"}
                       </td>
-                      <td className="bill-table-total bill-table-header-title hsn-acs">
+                      <td className="bill-table-total bill-table-header-title-1 hsn-acs">
                         TOTAL
                       </td>
-                      <td className="bill-table-total bill-table-header-title bags">
+                      <td className="bill-table-total bill-table-header-title-1 bags">
                         {tableTotalValues.bags}
                       </td>
-                      <td className="bill-table-total bill-table-header-title qty">
+                      <td className="bill-table-total bill-table-header-title-1 qty">
                         {tableTotalValues.qty}
                       </td>
-                      <td className="bill-table-total bill-table-header-title rate">
+                      <td className="bill-table-total bill-table-header-title-1 rate">
                         -
                       </td>
-                      <td className="bill-table-total bill-table-header-title amount bill-total-amt">
+                      <td className="bill-table-total bill-table-header-title-1 amount bill-total-amt">
                         {tableTotalValues.totalAmount}
                       </td>
                     </tr>
