@@ -33,9 +33,11 @@ const BillTemplate = () => {
       <button onClick={downloadPdf} className="bill-button">
         Print
       </button>
+
       <button onClick={goToHome} className="bill-button">
         Go to Home
       </button>
+
       <div className="printing-area" ref={componentRef}>
         <div className="bill-template-screen" id="bill">
           <div className="bill-page">
