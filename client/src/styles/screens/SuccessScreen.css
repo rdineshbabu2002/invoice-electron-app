@@ -1,0 +1,28 @@
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 80vh;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+.success-payment {
+  color: #2f9e44;
+}
+
+.success-moreorders {
+  font-size: 1rem;
+}
+
+.failue-payment {
+  color: #f03e3e;
+}

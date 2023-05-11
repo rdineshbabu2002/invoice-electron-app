@@ -1,11 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "../styles/screens/BillTemplate.css";
 import muruganImg from "../assets/murugan.png";
 import { useLocation } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
+import Stripe from "stripe";
 
 const BillTemplate = () => {
+  const [stripe, setStripe] = useState(null);
+  const [paymentLink, setPaymentLink] = useState(null);
   const navigate = useNavigate();
   const { state } = useLocation();
   const {
@@ -28,6 +31,40 @@ const BillTemplate = () => {
     navigate("/");
   };
 
+  const sendMail = async (e) => {
+    e.preventDefault();
+    console.log("send mail");
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "inr",
+            product_data: {
+              name: "My Product",
+            },
+            unit_amount: 1000,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: "http://localhost:3000/success",
+      cancel_url: "https://example.com/cancel",
+    });
+
+    const paymentLink = session.url;
+    console.log(paymentLink);
+  };
+
+  useEffect(() => {
+    const stripeClient = Stripe(
+      "sk_test_51N2OSxSE1GYYN5CR4d2vSqgqJicksJYIu15ritlGjd2EGxhPgSMzGoEvPBOlj63hz93iSgbk3FWRK6qpD3AcIkGc001RTrGYFP"
+    );
+    setStripe(stripeClient);
+  }, []);
+
   return (
     <div>
       <button onClick={downloadPdf} className="bill-button">
@@ -35,6 +72,9 @@ const BillTemplate = () => {
       </button>
       <button onClick={goToHome} className="bill-button">
         Go to Home
+      </button>
+      <button className="bill-button" onClick={sendMail}>
+        Send Mail
       </button>
       <div className="printing-area" ref={componentRef}>
         <div className="bill-template-screen" id="bill">

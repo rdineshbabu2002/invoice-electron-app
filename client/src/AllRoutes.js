@@ -10,6 +10,8 @@ import NewBill from "./screens/NewBill.jsx";
 import MemoTemplate from "./screens/MemoTemplate";
 import NewMemo from "./screens/NewMemo";
 import AllBills from "./screens/AllBills";
+import SuccessScreen from "./screens/SuccessScreen";
+import ErrorScreen from "./screens/ErrorScreen";
 
 const AllRoutes = () => {
   return (
@@ -27,6 +29,8 @@ const AllRoutes = () => {
         <Route path="/newMemo" element={<NewMemo />} />
         <Route path="/memo" element={<MemoTemplate />} />
         <Route path="/allBills" element={<AllBills />} />
+        <Route path="/success" element={<SuccessScreen />} />
+        <Route path="/error" element={<ErrorScreen />} />
       </Routes>
     </>
   );
