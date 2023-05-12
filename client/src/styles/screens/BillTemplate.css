@@ -279,3 +279,21 @@
 .bw-print {
   filter: grayscale(100%);
 }
+
+.model-bill-container {
+  margin-top: 1rem;
+}
+
+.model-bill-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.model-bill-btn-container {
+  display: flex;
+  align-items: center;
+}
+.send-mail {
+  width: 6.5rem;
+}
