@@ -10,6 +10,8 @@ import NewBill from "./screens/NewBill.jsx";
 import MemoTemplate from "./screens/MemoTemplate";
 import NewMemo from "./screens/NewMemo";
 import GstBillTemplate from "./screens/GetBillTemplate";
+import UploadJson from "./screens/UploadJson";
+import AllBills from "./screens/AllBills";
 
 const AllRoutes = () => {
   return (
@@ -40,6 +42,9 @@ const AllRoutes = () => {
         {/* Add new Goods  */}
         <Route path="/newgoods/:id" element={<Addgoods />} />
         {/* Edit Goods  */}
+
+        <Route path="/uploadjson" element={<UploadJson />} />
+        <Route path="/allbills" element={<AllBills />} />
       </Routes>
     </>
   );

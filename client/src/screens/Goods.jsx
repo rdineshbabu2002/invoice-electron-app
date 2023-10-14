@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/screens/Goods.css";
+import Loading from "./Loading";
 
 import { Link } from "react-router-dom";
 
 const Goods = () => {
+  const [loading, setLoading] = useState(false);
   const [goods, setGoods] = useState([]);
 
   useEffect(() => {
-    const datas = localStorage.getItem("goods");
-    if (datas) {
-      setGoods(JSON.parse(datas));
-    }
+    setLoading(true);
+    getAllGoods();
+    setLoading(false);
   }, []);
 
   const deleteGoods = (i) => {
@@ -23,6 +24,20 @@ const Goods = () => {
       setGoods(temp);
     }
   };
+
+  const getAllGoods = async () => {
+    const response = await fetch("/api/goods/");
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      setGoods(json.data);
+    } else {
+      console.log(json);
+    }
+  };
+
+  if (loading) return <Loading />;
 
   return (
     <div>
@@ -60,7 +75,7 @@ const Goods = () => {
                   <button className="delete-btn">DELETE</button>
                 </div>
                 <div className="Edit">
-                  <Link to={"/newgoods/" + i}>
+                  <Link to={"/newgoods/" + val._id}>
                     <button className="edit-btn">EDIT</button>
                   </Link>
                 </div>

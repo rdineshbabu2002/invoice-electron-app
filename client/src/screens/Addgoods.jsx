@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 const Addgoods = (props) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState(false);
 
   const [data, setdata] = useState({
     name: "",
@@ -15,41 +16,73 @@ const Addgoods = (props) => {
   });
   useEffect(() => {
     if (id !== undefined) {
-      // console.log(props.id);
-      let temp = "";
-      if (localStorage.getItem("goods")) {
-        temp = localStorage.getItem("goods");
-        if (temp) {
-          temp = JSON.parse(temp);
-        }
-      }
-      setdata(temp[id]);
+      setIsEdit(true);
+      getGoodsById();
     }
   }, [id]);
+
   const changeValue = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setdata({ ...data, [name]: value });
   };
+
   const submit = (e) => {
     e.preventDefault();
     addgoods(data);
   };
 
-  const addgoods = (data) => {
-    let temp = localStorage.getItem("goods");
-    if (!temp) {
-      temp = [];
+  const getGoodsById = async () => {
+    const response = await fetch(`/api/goods/${id}`);
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      setdata(json.data);
     } else {
-      temp = JSON.parse(temp);
+      console.log(json);
     }
-    if (id !== undefined) {
-      temp[id] = data;
+  };
+
+  const uploadGoods = async () => {
+    const response = await fetch("/api/goods/creategood", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const json = await response.json();
+    if (json.status === "success") {
+      console.log(json);
     } else {
-      temp = [...temp, data];
+      console.log(json);
     }
-    // console.log(temp);
-    localStorage.setItem("goods", JSON.stringify(temp));
+  };
+
+  const updateGoods = async (data) => {
+    const response = await fetch(`/api/good/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    if (json.status === "success") {
+      console.log(json);
+    } else {
+      console.log(json);
+    }
+  };
+
+  const addgoods = () => {
+    if (isEdit) {
+      updateGoods(data);
+    } else {
+      uploadGoods();
+    }
     navigate("/");
   };
 

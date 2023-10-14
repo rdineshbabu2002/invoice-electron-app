@@ -1,0 +1,62 @@
+.all-bills-table,
+.all-bills-table th,
+.all-bills-table td {
+  border: 1px solid #dee2e6;
+  border-collapse: collapse;
+}
+
+.all-bills-th {
+  width: 10rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: #40c057;
+  color: #fff;
+}
+
+.list-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background-color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-bills-td {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.option {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 20rem;
+}
+
+.all-bills.view-bill-btn {
+  background-color: #40c057;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.all-bills.delete-bill-btn {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}

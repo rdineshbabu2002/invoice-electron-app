@@ -8,26 +8,18 @@ const Addcustomer = (props) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [isEdit, setIsEdit] = useState(false);
+
   const [data, setdata] = useState({
     name: "",
     address: "",
     gstin: "",
   });
+
   useEffect(() => {
     if (id !== undefined) {
-      let temp = "";
-      if (localStorage.getItem("customers")) {
-        temp = localStorage.getItem("customers");
-
-        if (temp) {
-          temp = JSON.parse(temp);
-          console.log(temp);
-        }
-      }
-
-      console.log(temp[id]);
-
-      setdata(temp[id]);
+      setIsEdit(true);
+      getCustomer();
     }
   }, [id]);
 
@@ -37,27 +29,68 @@ const Addcustomer = (props) => {
     setdata({ ...data, [name]: value });
   };
 
+  const getCustomer = async () => {
+    const response = await fetch(`/api/customer/${id}`);
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      setdata(json.data);
+    } else {
+      console.log(json);
+    }
+  };
+
   const submit = (e) => {
     e.preventDefault();
     addcustomer(data);
   };
 
   const addcustomer = (data) => {
-    console.log(data);
-    let temp = localStorage.getItem("customers");
-    if (!temp) {
-      temp = [];
+    if (isEdit) {
+      updateCustomer(data);
     } else {
-      temp = JSON.parse(temp);
+      uploadData();
     }
-    if (id !== undefined) {
-      temp[id] = data;
-    } else {
-      temp = [...temp, data];
-    }
-
-    localStorage.setItem("customers", JSON.stringify(temp));
     navigate("/");
+  };
+
+  const uploadData = async () => {
+    const response = await fetch("/api/customer/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json);
+      navigate("/");
+    } else {
+      console.log(json);
+    }
+  };
+
+  const updateCustomer = async (data) => {
+    const response = await fetch(`api/customer/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json);
+      navigate("/");
+    } else {
+      console.log(json);
+    }
   };
 
   return (

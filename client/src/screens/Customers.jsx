@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/screens/Customers.css";
+import Loading from "./Loading";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const data = localStorage.getItem("customers");
-    if (data) {
-      setCustomers(JSON.parse(data));
-    }
+    getAllCustomers();
   }, []);
 
   const delteCustomer = (i) => {
@@ -22,6 +21,24 @@ const Customers = () => {
       setCustomers(temp);
     }
   };
+
+  const getAllCustomers = async () => {
+    setLoading(true);
+    const response = await fetch("/api/customer/");
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      setCustomers(json.data);
+    } else {
+      console.log(json);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
@@ -62,7 +79,7 @@ const Customers = () => {
                   </button>
                 </div>
                 <div className="Edit">
-                  <Link to={"/newcustomer/" + i} className="link">
+                  <Link to={"/newcustomer/" + val._id} className="link">
                     <button className="edit-btn">EDIT</button>
                   </Link>
                 </div>
