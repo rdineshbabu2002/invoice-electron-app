@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
-import "../styles/screens/BillTemplate.css";
+import "../styles/screens/GstBillTemplate.css";
 import muruganImg from "../assets/murugan.png";
 import { useLocation } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
+import { QRCodeSVG } from "qrcode.react";
 
-const BillTemplate = () => {
+const GstBillTemplate = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   // const {
@@ -23,17 +24,62 @@ const BillTemplate = () => {
     tableValues,
     tableTotalValues,
   } = {
-    containsGST: false,
+    containsGST: true,
     formDetails: {
       invoice: "1",
       name: "gokul",
-      address: "123\nperundurai",
+      address: "123\nperundurai lorem",
       gstin: "4321",
       vehicleNo: "TN33BU1968",
       date: "11.12.2023",
     },
     gstPercentage: 0,
     tableValues: [
+      {
+        productDescription0: "gokul",
+        hsn0: "123",
+        weight0: "26",
+        bags0: "250",
+        qty0: 6500,
+        rate0: "1500",
+        amount0: 375000,
+      },
+      {
+        productDescription0: "gokul",
+        hsn0: "123",
+        weight0: "26",
+        bags0: "250",
+        qty0: 6500,
+        rate0: "1500",
+        amount0: 375000,
+      },
+      {
+        productDescription0: "gokul",
+        hsn0: "123",
+        weight0: "26",
+        bags0: "250",
+        qty0: 6500,
+        rate0: "1500",
+        amount0: 375000,
+      },
+      {
+        productDescription0: "gokul",
+        hsn0: "123",
+        weight0: "26",
+        bags0: "250",
+        qty0: 6500,
+        rate0: "1500",
+        amount0: 375000,
+      },
+      {
+        productDescription0: "gokul",
+        hsn0: "123",
+        weight0: "26",
+        bags0: "250",
+        qty0: 6500,
+        rate0: "1500",
+        amount0: 375000,
+      },
       {
         productDescription0: "gokul",
         hsn0: "123",
@@ -57,6 +103,9 @@ const BillTemplate = () => {
   console.log(formDetails);
   console.log(tableValues);
 
+  const qrcodeValue =
+    "eyJhbGciOiJSUzI1NiIsImtpZCI6IkI4RDYzRUNCNThFQTVFNkY0QUFDM0Q1MjQ1NDNCMjI0NjY2OUIwRjgiLCJ4NXQiOiJ1TlkteTFqcVhtOUtyRDFTUlVPeUpHWnBzUGciLCJ0eXAiOiJKV1QifQ.eyJkYXRhIjoie1wiU2VsbGVyR3N0aW5cIjpcIjMzQUJNRlM2MTE2TDFaVlwiLFwiQnV5ZXJHc3RpblwiOlwiMzNCUE5QSzg0MTlMMVpEXCIsXCJEb2NOb1wiOlwiMzcwXCIsXCJEb2NUeXBcIjpcIklOVlwiLFwiRG9jRHRcIjpcIjA5LzEwLzIwMjNcIixcIlRvdEludlZhbFwiOjc4Mzc4LjMsXCJJdGVtQ250XCI6MSxcIk1haW5Ic25Db2RlXCI6XCIyMzAyMjAyMFwiLFwiSXJuXCI6XCI1MjU0Y2Y5ZDdhYjEwODgwZGEyMTc1N2UxOTRlZDUyYzQ1N2IwNDBmZGI0MmEzN2FiMzU1ZjUzZDQ4ZjMxMWY0XCIsXCJJcm5EdFwiOlwiMjAyMy0xMC0wOSAyMDoxMTowMFwifSIsImlzcyI6Ik5JQyJ9.uFLwKFfitbW8CfLFypBL5BmrqziOTYr-0h-KaBx6H1J3S2YVrRx1Zhm0ngjqXLnnVjK14BkIb0QgkLlFSpb-v00uDjCbgRuv8GollF_6DWnKmwXQHmnCTFMBeu1qdc9RjTQ8t-0hSLbLL_P5laKP29WajxmGrz1mg227zIjjSdHd7Q3uLFjdHdYV0-w7camqmALzG6h5o9Nt8mwbI9fmw9H4iN_x3BEWFnRWa4bk0vFYT88A4_iG4H2a_7HJgXFHwM3cbGVvYfVGTco6yYyqwL8lyy6BmPdefw9NVdUCnsZNiDhuDBiJQNNYNuEc4R6_R6lzE0SXYjtMe7t4cV-0iQ";
+
   const componentRef = useRef();
 
   const downloadPdf = useReactToPrint({
@@ -76,20 +125,18 @@ const BillTemplate = () => {
         Go to Home
       </button>
       <div className="printing-area" ref={componentRef}>
-        <div className="bill-template-screen" id="bill">
-          <div className="bill-page">
+        <div className=" bill-template-screen" id="bill">
+          <div className="gst-template bill-page">
             <div className="bill-title-container">
-              <h1 className="bill-title txt-align-center">
-                SAKTHI MURUGAN RICE MILL
-              </h1>
-              <p className="bill-from-address font-family-light txt-align-center">
+              <h1 className="bill-title">SAKTHI MURUGAN RICE MILL</h1>
+              <p className="bill-from-address font-family-light">
                 280,Pasur Road, Sellathapalayam, Elumathur, Erode - 638104.
               </p>
-              <p className="bill-form-gstno font-family-light txt-align-center">
+              <p className="bill-form-gstno font-family-light">
                 GSTIN : 33ABMFS6116L1ZV
               </p>
             </div>
-            <p className="txt-align-center">
+            <p>
               <span className="invoice-title font-family-light">
                 {containsGST ? "Tax Invoice No" : "Invoice No"} :{" "}
                 {containsGST
@@ -97,11 +144,15 @@ const BillTemplate = () => {
                   : formDetails.invoice}
               </span>
             </p>
-            <p className="bill-date">
-              <span className="bill-date-name">Date :</span> {formDetails.date}
+            <p className="gst-bill-date">
+              <span className="gst-bill-date-name">Date :</span>{" "}
+              {formDetails.date}
             </p>
-            <div className="bill-details-container">
-              <div className="bill-logo-container">
+            <div className="qr-code-container">
+              <QRCodeSVG value={qrcodeValue} size="200" />
+            </div>
+            <div className="gst-bill-details-container">
+              <div className="gst-bill-logo-container">
                 <img
                   src={muruganImg}
                   alt="murugan img"
@@ -109,12 +160,12 @@ const BillTemplate = () => {
                 />
               </div>
 
-              <div className="bill-bill-address-container ">
+              <div className="gst-bill-bill-address-container ">
                 <p className="bill-bill-from-title font-family-light">
                   Billing to
                 </p>
                 <p className="bill-from-name ">{formDetails.name}</p>
-                <p className="bill-from-address font-family-light">
+                <p className="bill-from-address font-family-light gst-from-address">
                   {formDetails.address}
                 </p>
                 <p className="bill-form-gstno font-family-light">
@@ -122,6 +173,18 @@ const BillTemplate = () => {
                 </p>
                 <p className="bill-form-gstno font-family-light">
                   Vehicle No : {formDetails.vehicleNo}
+                </p>
+                <p className="bill-form-gstno font-family-light gst-from-address">
+                  IRN :
+                  {
+                    "5254cf9d7ab10880da21757e194ed52c4\n57b040fdb42a37ab355f53d48f311f4"
+                  }
+                </p>
+                <p className="bill-form-gstno font-family-light">
+                  Ack No : 152315917048495
+                </p>
+                <p className="bill-form-gstno font-family-light">
+                  Ack Date : 2023-10-09 20:11:00
                 </p>
               </div>
             </div>
@@ -338,4 +401,4 @@ const BillTemplate = () => {
   );
 };
 
-export default BillTemplate;
+export default GstBillTemplate;

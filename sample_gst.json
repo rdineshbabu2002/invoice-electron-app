@@ -1,0 +1,83 @@
+[
+  {
+    "Version": "1.1",
+    "TranDtls": {
+      "TaxSch": "GST",
+      "SupTyp": "B2B",
+      "IgstOnIntra": "N",
+      "RegRev": "N",
+      "EcmGstin": null
+    },
+    "DocDtls": {
+      "Typ": "INV",
+      "No": "369",
+      "Dt": "07/10/2023"
+    },
+    "SellerDtls": {
+      "Gstin": "33ABMFS6116L1ZV",
+      "LglNm": "SAKTHI MURUGAN RICE MILL",
+      "Addr1": "280,Pasur Road,Elumathur",
+      "Addr2": null,
+      "Loc": "Elumathur",
+      "Pin": 638104,
+      "Stcd": "33",
+      "Ph": "9994574429",
+      "Em": null
+    },
+    "BuyerDtls": {
+      "Gstin": "33BPNPK8419L1ZD",
+      "LglNm": "SAKTHI TRADERS",
+      "Addr1": "368-D, NA, NATESHAN NAGAR, TRICHY ROAD, VELLAKOVIL,KANGEYAM TALUK, Tiruppur, Tamil Nadu, 638111",
+      "Addr2": null,
+      "Loc": "Tiruppur",
+      "Pin": 638111,
+      "Pos": "33",
+      "Stcd": "33",
+      "Ph": null,
+      "Em": null
+    },
+    "ValDtls": {
+      "AssVal": 74646,
+      "IgstVal": 0,
+      "CgstVal": 1866.15,
+      "SgstVal": 1866.15,
+      "CesVal": 0,
+      "StCesVal": 0,
+      "Discount": 0,
+      "OthChrg": 0,
+      "RndOffAmt": 0,
+      "TotInvVal": 78378.3
+    },
+    "RefDtls": {
+      "InvRm": "NICGEPP2.0"
+    },
+    "ItemList": [
+      {
+        "SlNo": "1",
+        "PrdDesc": "BRAN",
+        "IsServc": "N",
+        "HsnCd": "23022020",
+        "Qty": 6380,
+        "FreeQty": 0,
+        "Unit": "KGS",
+        "UnitPrice": 11.7,
+        "TotAmt": 74646,
+        "Discount": 0,
+        "PreTaxVal": 0,
+        "AssAmt": 74646,
+        "GstRt": 5,
+        "IgstAmt": 0,
+        "CgstAmt": 1866.15,
+        "SgstAmt": 1866.15,
+        "CesRt": 0,
+        "CesAmt": 0,
+        "CesNonAdvlAmt": 0,
+        "StateCesRt": 0,
+        "StateCesAmt": 0,
+        "StateCesNonAdvlAmt": 0,
+        "OthChrg": 0,
+        "TotItemVal": 78378.3
+      }
+    ]
+  }
+]

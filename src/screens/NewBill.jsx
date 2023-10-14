@@ -198,7 +198,8 @@ const NewBill = () => {
       tableTotalValues: tableTotalValues,
     };
 
-    navigate("/bill", { state: stateValues });
+    console.log(stateValues);
+    // navigate("/bill", { state: stateValues });
   };
 
   return (

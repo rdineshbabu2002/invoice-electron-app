@@ -19,7 +19,6 @@ const MemoTemplate = () => {
   };
   return (
     <>
-      {/* <Navbar /> */}
       <button onClick={downloadPdf} className="bill-button">
         Print
       </button>

@@ -1,0 +1,38 @@
+.gst-bill-date {
+  float: left;
+}
+.gst-template {
+  position: relative;
+}
+
+.gst-bill-details-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.gst-bill-logo-container {
+  margin-top: 1.2rem;
+}
+
+.qr-code-container {
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
+
+.gst-from-address {
+  width: 320px;
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
+
+.gst-bill-bill-address-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
