@@ -8,51 +8,51 @@ import { useNavigate } from "react-router-dom";
 const BillTemplate = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  // const {
-  //   containsGST,
-  //   formDetails,
-  //   gstPercentage,
-  //   tableValues,
-  //   tableTotalValues,
-  // } = state;
-
   const {
     containsGST,
     formDetails,
     gstPercentage,
     tableValues,
     tableTotalValues,
-  } = {
-    containsGST: false,
-    formDetails: {
-      invoice: "1",
-      name: "gokul",
-      address: "123\nperundurai",
-      gstin: "4321",
-      vehicleNo: "TN33BU1968",
-      date: "11.12.2023",
-    },
-    gstPercentage: 0,
-    tableValues: [
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-    ],
-    tableTotalValues: {
-      bags: 250,
-      qty: 6500,
-      amount: 375000,
-      gst: 0,
-      totalAmount: "375000.00",
-      amountInWords: "Three Lakhs Seventy Five Thousands  Rupees ",
-    },
-  };
+  } = state;
+
+  // const {
+  //   containsGST,
+  //   formDetails,
+  //   gstPercentage,
+  //   tableValues,
+  //   tableTotalValues,
+  // } = {
+  //   containsGST: false,
+  //   formDetails: {
+  //     invoice: "1",
+  //     name: "gokul",
+  //     address: "123\nperundurai",
+  //     gstin: "4321",
+  //     vehicleNo: "TN33BU1968",
+  //     date: "11.12.2023",
+  //   },
+  //   gstPercentage: 0,
+  //   tableValues: [
+  //     {
+  //       productDescription0: "gokul",
+  //       hsn0: "123",
+  //       weight0: "26",
+  //       bags0: "250",
+  //       qty0: 6500,
+  //       rate0: "1500",
+  //       amount0: 375000,
+  //     },
+  //   ],
+  //   tableTotalValues: {
+  //     bags: 250,
+  //     qty: 6500,
+  //     amount: 375000,
+  //     gst: 0,
+  //     totalAmount: "375000.00",
+  //     amountInWords: "Three Lakhs Seventy Five Thousands  Rupees ",
+  //   },
+  // };
 
   console.log(formDetails);
   console.log(tableValues);

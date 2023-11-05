@@ -4,9 +4,11 @@ import "../styles/screens/NewBill.css";
 import inWords from "../utils/amountInWords";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const NewBill = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [containsGST, setContainsGST] = useState(false);
   const [gstPercentage, setGSTPercentage] = useState(0);
   const [productDetails, setProductDetails] = useState([]);
@@ -25,9 +27,9 @@ const NewBill = () => {
     {
       productDescription0: "",
       hsn0: "",
-      weight0: 0, //26
+      weight0: 0,
       bags0: 0,
-      qty0: 0, //bag *
+      qty0: 0,
       rate0: 0,
       amount0: 0,
     },
@@ -48,33 +50,11 @@ const NewBill = () => {
   };
 
   useEffect(() => {
-    let temp = localStorage.getItem("goods");
-    let customers = localStorage.getItem("customers");
-    if (temp && customers) {
-      temp = JSON.parse(temp);
-      customers = JSON.parse(customers);
+    setLoading(true);
+    getProductDetails();
+    getCustomerDetails();
 
-      setProductDetails(temp);
-      setCustomerDetails(customers);
-      let values = [];
-      temp.map((singleProduct) => {
-        return values.push({
-          label: singleProduct.name,
-          value: singleProduct.name,
-        });
-      });
-
-      let customerValues = [];
-      customers.map((singleCustomer) => {
-        return customerValues.push({
-          label: singleCustomer.name,
-          value: singleCustomer.name,
-        });
-      });
-
-      setProductValues(values);
-      setCustomerValues(customerValues);
-    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -198,9 +178,79 @@ const NewBill = () => {
       tableTotalValues: tableTotalValues,
     };
 
+    if (!containsGST) {
+      stateValues.status = "success";
+    }
+
     console.log(stateValues);
-    // navigate("/bill", { state: stateValues });
+    uploadData(stateValues);
+    navigate("/bill", { state: stateValues });
   };
+
+  const uploadData = async (stateValues) => {
+    const response = await fetch("/api/bill/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stateValues),
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      navigate("/bill", { state: json.data });
+    } else {
+      console.log(json);
+    }
+  };
+
+  const getCustomerDetails = async () => {
+    const response = await fetch("/api/customer/");
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      setCustomerDetails(json.data);
+      // return json.data;
+      let customerValues = [];
+      json.data.map((singleCustomer) => {
+        return customerValues.push({
+          label: singleCustomer.name,
+          value: singleCustomer.name,
+        });
+      });
+      setCustomerValues(customerValues);
+    } else {
+      console.log(json);
+      return [];
+    }
+  };
+
+  const getProductDetails = async () => {
+    const response = await fetch("/api/goods/");
+    const json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+      console.log(json.data);
+      setProductDetails(json.data);
+      let values = [];
+      json.data.map((singleProduct) => {
+        return values.push({
+          label: singleProduct.name,
+          value: singleProduct.name,
+        });
+      });
+      setProductValues(values);
+    } else {
+      console.log(json);
+      return [];
+    }
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="section-new-bill">

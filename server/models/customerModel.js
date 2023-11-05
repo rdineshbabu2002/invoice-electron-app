@@ -13,6 +13,18 @@ const customerSchema = new mongoose.Schema({
     type: String,
     required: [true, "Customer must have a GSTIN"],
   },
+  distance: {
+    type: Number,
+    required: [true, "Customer must have a distance"],
+  },
+  location: {
+    type: String,
+    required: [true, "Customer must have a location"],
+  },
+  pincode: {
+    type: Number,
+    required: [true, "Customer must have a pincode"],
+  },
 });
 
 const Customer = mongoose.model("Customer", customerSchema);

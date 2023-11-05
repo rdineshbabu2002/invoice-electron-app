@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/screens/Addcustomer.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Addcustomer = (props) => {
   const { id } = useParams();
@@ -14,6 +15,9 @@ const Addcustomer = (props) => {
     name: "",
     address: "",
     gstin: "",
+    distance: 0,
+    location: "",
+    pincode: 0,
   });
 
   useEffect(() => {
@@ -56,7 +60,7 @@ const Addcustomer = (props) => {
   };
 
   const uploadData = async () => {
-    const response = await fetch("/api/customer/", {
+    const response = await fetch("/api/customer/createcustomer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +79,7 @@ const Addcustomer = (props) => {
   };
 
   const updateCustomer = async (data) => {
-    const response = await fetch(`api/customer/${id}`, {
+    const response = await fetch(`/api/customer/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -87,9 +91,11 @@ const Addcustomer = (props) => {
     console.log(json);
     if (json.status === "success") {
       console.log(json);
+      toast.success("Customer Updated Successfully");
       navigate("/");
     } else {
       console.log(json);
+      toast.error(json.message);
     }
   };
 
@@ -141,6 +147,50 @@ const Addcustomer = (props) => {
             value={data.gstin}
             id="gstin"
             placeholder="Enter gstin"
+            onChange={changeValue}
+          />
+        </div>
+        <div className="element">
+          <label className="formlabel" htmlFor="gstin">
+            Enter Disance :
+          </label>
+          <input
+            required
+            className="forminput"
+            type="number"
+            name="distance"
+            value={data.distance}
+            id="distance"
+            placeholder="Enter Distance"
+            onChange={changeValue}
+          />
+        </div>
+        <div className="element">
+          <label className="formlabel" htmlFor="gstin">
+            Enter Location :
+          </label>
+          <input
+            required
+            className="forminput"
+            name="location"
+            value={data.location}
+            id="location"
+            placeholder="Enter Location"
+            onChange={changeValue}
+          />
+        </div>
+        <div className="element">
+          <label className="formlabel" htmlFor="gstin">
+            Enter Pincode :
+          </label>
+          <input
+            required
+            className="forminput"
+            type="number"
+            name="pincode"
+            value={data.pincode}
+            id="pincode"
+            placeholder="Enter Pincode"
             onChange={changeValue}
           />
         </div>

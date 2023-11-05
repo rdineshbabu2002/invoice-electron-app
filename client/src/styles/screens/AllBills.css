@@ -60,3 +60,17 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.success-text {
+  color: #37b24d;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error-text {
+  color: #ff6b6b;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}

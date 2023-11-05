@@ -2,9 +2,7 @@ const catchAsync = require("../utils/catchAsync");
 const Customer = require("../models/customerModel");
 
 const getAllCustomers = catchAsync(async (req, res) => {
-  console.log("get all customers");
   const customers = await Customer.find();
-  console.log(customers);
   res.status(200).json({
     status: "success",
     data: customers,
@@ -29,14 +27,13 @@ const getSingleCustomer = catchAsync(async (req, res) => {
 
 const updateCustomer = catchAsync(async (req, res) => {
   // get the fields to update
-  const { name, address, gstin } = req.body;
+  // const { name, address, gstin } = req.body;
   //update the customer
 
-  const customer = await Customer.findByIdAndUpdate(
-    req.params.id,
-    { name, address, gstin },
-    { new: true, runValidators: true }
-  );
+  const customer = await Customer.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
   res.status(200).json({
     status: "success",
     data: customer,

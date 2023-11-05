@@ -5,106 +5,26 @@ import { useLocation } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
+import { genreateNewLinesInMiddle } from "../utils/helperFunctions";
 
 const GstBillTemplate = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  // const {
-  //   containsGST,
-  //   formDetails,
-  //   gstPercentage,
-  //   tableValues,
-  //   tableTotalValues,
-  // } = state;
-
   const {
     containsGST,
     formDetails,
     gstPercentage,
     tableValues,
     tableTotalValues,
-  } = {
-    containsGST: true,
-    formDetails: {
-      invoice: "1",
-      name: "gokul",
-      address: "123\nperundurai lorem",
-      gstin: "4321",
-      vehicleNo: "TN33BU1968",
-      date: "11.12.2023",
-    },
-    gstPercentage: 0,
-    tableValues: [
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-      {
-        productDescription0: "gokul",
-        hsn0: "123",
-        weight0: "26",
-        bags0: "250",
-        qty0: 6500,
-        rate0: "1500",
-        amount0: 375000,
-      },
-    ],
-    tableTotalValues: {
-      bags: 250,
-      qty: 6500,
-      amount: 375000,
-      gst: 0,
-      totalAmount: "375000.00",
-      amountInWords: "Three Lakhs Seventy Five Thousands  Rupees ",
-    },
-  };
+    ackDate,
+    ackNo,
+    irn,
+    qrcode,
+  } = state;
 
-  console.log(formDetails);
-  console.log(tableValues);
+  console.log(state);
 
-  const qrcodeValue =
-    "eyJhbGciOiJSUzI1NiIsImtpZCI6IkI4RDYzRUNCNThFQTVFNkY0QUFDM0Q1MjQ1NDNCMjI0NjY2OUIwRjgiLCJ4NXQiOiJ1TlkteTFqcVhtOUtyRDFTUlVPeUpHWnBzUGciLCJ0eXAiOiJKV1QifQ.eyJkYXRhIjoie1wiU2VsbGVyR3N0aW5cIjpcIjMzQUJNRlM2MTE2TDFaVlwiLFwiQnV5ZXJHc3RpblwiOlwiMzNCUE5QSzg0MTlMMVpEXCIsXCJEb2NOb1wiOlwiMzcwXCIsXCJEb2NUeXBcIjpcIklOVlwiLFwiRG9jRHRcIjpcIjA5LzEwLzIwMjNcIixcIlRvdEludlZhbFwiOjc4Mzc4LjMsXCJJdGVtQ250XCI6MSxcIk1haW5Ic25Db2RlXCI6XCIyMzAyMjAyMFwiLFwiSXJuXCI6XCI1MjU0Y2Y5ZDdhYjEwODgwZGEyMTc1N2UxOTRlZDUyYzQ1N2IwNDBmZGI0MmEzN2FiMzU1ZjUzZDQ4ZjMxMWY0XCIsXCJJcm5EdFwiOlwiMjAyMy0xMC0wOSAyMDoxMTowMFwifSIsImlzcyI6Ik5JQyJ9.uFLwKFfitbW8CfLFypBL5BmrqziOTYr-0h-KaBx6H1J3S2YVrRx1Zhm0ngjqXLnnVjK14BkIb0QgkLlFSpb-v00uDjCbgRuv8GollF_6DWnKmwXQHmnCTFMBeu1qdc9RjTQ8t-0hSLbLL_P5laKP29WajxmGrz1mg227zIjjSdHd7Q3uLFjdHdYV0-w7camqmALzG6h5o9Nt8mwbI9fmw9H4iN_x3BEWFnRWa4bk0vFYT88A4_iG4H2a_7HJgXFHwM3cbGVvYfVGTco6yYyqwL8lyy6BmPdefw9NVdUCnsZNiDhuDBiJQNNYNuEc4R6_R6lzE0SXYjtMe7t4cV-0iQ";
+  const qrcodeValue = JSON.stringify(qrcode);
 
   const componentRef = useRef();
 
@@ -175,16 +95,13 @@ const GstBillTemplate = () => {
                   Vehicle No : {formDetails.vehicleNo}
                 </p>
                 <p className="bill-form-gstno font-family-light gst-from-address">
-                  IRN :
-                  {
-                    "5254cf9d7ab10880da21757e194ed52c4\n57b040fdb42a37ab355f53d48f311f4"
-                  }
+                  IRN : {genreateNewLinesInMiddle(irn)}
                 </p>
                 <p className="bill-form-gstno font-family-light">
-                  Ack No : 152315917048495
+                  Ack No : {ackNo}
                 </p>
                 <p className="bill-form-gstno font-family-light">
-                  Ack Date : 2023-10-09 20:11:00
+                  Ack Date : {ackDate}
                 </p>
               </div>
             </div>

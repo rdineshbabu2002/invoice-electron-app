@@ -9,9 +9,10 @@ import Home from "./screens/Home";
 import NewBill from "./screens/NewBill.jsx";
 import MemoTemplate from "./screens/MemoTemplate";
 import NewMemo from "./screens/NewMemo";
-import GstBillTemplate from "./screens/GetBillTemplate";
+import GstBillTemplate from "./screens/GstBillTemplate";
 import UploadJson from "./screens/UploadJson";
 import AllBills from "./screens/AllBills";
+import JsonGenerator from "./screens/Test";
 
 const AllRoutes = () => {
   return (
@@ -45,6 +46,8 @@ const AllRoutes = () => {
 
         <Route path="/uploadjson" element={<UploadJson />} />
         <Route path="/allbills" element={<AllBills />} />
+
+        <Route path="/test" element={<JsonGenerator />} />
       </Routes>
     </>
   );

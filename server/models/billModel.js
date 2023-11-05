@@ -49,6 +49,13 @@ const billSchema = new mongoose.Schema({
   ackDate: {
     type: String,
   },
+  qrcode: {
+    type: String,
+  },
+  status: {
+    type: String,
+    default: "Pending",
+  },
 });
 
 const Bill = mongoose.model("Bill", billSchema);
