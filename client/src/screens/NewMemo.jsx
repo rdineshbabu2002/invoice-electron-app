@@ -45,7 +45,7 @@ const NewMemo = () => {
 
   const addRowHandler = () => {
     let index = tableValues.length;
-    if (index >= 4) {
+    if (index >= 7) {
       return;
     }
     let temp = {};

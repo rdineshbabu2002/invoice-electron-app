@@ -29,7 +29,7 @@
 
 .memo-name-date-container {
   display: flex;
-  margin: 1rem 3rem 0 3rem;
+  margin: 0.8rem 3rem 0 3rem;
   justify-content: space-between;
 }
 
@@ -46,7 +46,7 @@
 .memo-th,
 .memo-td {
   border: 1px solid #333;
-  padding: 0.5rem;
+  padding: 0.2rem;
   text-align: center;
 }
 .memo-name,
